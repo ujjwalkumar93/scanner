@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<title>Invoice Scanner</title>
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<h2 >Invoice Scanner</h2>
+<!-- Latest compiled and minified Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+ <div class="container-fluid">
+<form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="custom-file">
+  <input type="file" class="custom-file-input" id="fileInput" multiple onchange="showname()" name="doccument">
+  <label class="custom-file-label" id="filename">Choose Invoice </label>
+
+            <button type="submit" class="btn btn-primary" >Upload Invoice</button>
+            <button type="button" class="btn btn-success" >Download</button>
+
+</div>
+
+</form>
+
+</div>
+
+<style>
+body {
+padding-top: 1em;
+}
+h2 {
+text-align:center;
+color:red;
+font-weight:900;
+margin-top:160px;
+}
+.container-fluid{
+margin-top:46px;
+width:80%;
+
+}
+.btn-success{
+align="center";
+display: block;
+margin:auto;
+margin-top:16px;
+
+}
+.btn-primary{
+align="center";
+display: block;
+margin:auto;
+margin-top:46px;
+
+}
+
+</style>
+
+<script>
+
+function showname () {
+      var name = document.getElementById('fileInput');
+
+       var s= document.getElementById('filename');
+          s.innerHTML =  name.files.item(0).name;
+    };
+</script>
+</html>
