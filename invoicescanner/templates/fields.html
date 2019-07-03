@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit PDF Fields</title>
+    {{ csrf_token }}
+     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+</html>
+<div style="background-color:#cc7efc">
+<h2 style="text-align:center;color:blue;font-size:23px;font-weight:bold;">Please Check All Fields Are Correct</h2>
+
+<div class="container" style="margin-left:15%;margin-top:46px;">
+
+  <form class="form-horizontal" method="post" action="generateqr"  >
+{{ csrf_token }}
+    <div class="form-group">
+
+      <label class="control-label col-sm-3" >PO Number: </label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control"  name="po" value= "{{ Po_No }}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" >PO Order Item No. :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="item_no" value="{{ ord_item_no }}">
+      </div>
+    </div>
+
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Vendor Invoice Part Qty :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="part_qty" >
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Vendor GST Invoices No :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="inv_no" value="{{ invoice_no }}">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Vendor Invoice date :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="inv_date" value="{{ invoice_date }}">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Vendor Invoice Basic / Gross Rate :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="gross_rate">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Vendor Invoice Net Rate :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="net_rate">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Vendor code :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="vendor_code" value="{{ vendor_code }}">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Invoice Part Number :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="part_no" value="{{ part_no }}">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Tax values CGST :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="cgst_value">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Tax values SGST :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="sgst_value">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Tax values IGST :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="igst_value" value="{{ igst_amt }}">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Tax values UGST :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="ugst_value">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Tax Rates CGST % :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="cgst_rate">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Tax Rates SGST % :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="sgst_rate">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Tax Rates IGST % :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="igst_rate" value="{{ igst_rate }}">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Tax values UGST % :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="ugst_rate">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >cess :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="cess">
+      </div>
+    </div>
+       <div class="form-group">
+      <label class="control-label col-sm-3" >Total Invoice value :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="invoice_value" value="{{ total_inv_val}}">
+      </div>
+    </div>
+
+       <div class="form-group">
+      <label class="control-label col-sm-3" >HSN / SAC Code :</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="HSN_code" value="{{ hsn_no}}">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-10">
+        <div class="checkbox">
+          <label><input type="checkbox" name="remember"> All fields are correct</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-10">
+        <button type="submit" class="btn btn-primary">Print QRCode</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+</div>
+</body>
+</html>

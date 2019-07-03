@@ -3,6 +3,7 @@
 <head>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<body style="background-color:#8d47b3">
 <h2 >Invoice Scanner</h2>
 <!-- Latest compiled and minified Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -15,7 +16,7 @@
   <label class="custom-file-label" id="filename">Choose Invoice </label>
 
             <button type="submit" class="btn btn-primary" >Upload Invoice</button>
-            <button type="button" class="btn btn-success" >Download</button>
+            <!--button type="button" class="btn btn-success" >Next  ->></button-->
 
 </div>
 
@@ -29,13 +30,13 @@ padding-top: 1em;
 }
 h2 {
 text-align:center;
-color:red;
+color:#7fcf08;
 font-weight:900;
 margin-top:160px;
 }
 .container-fluid{
 margin-top:46px;
-width:80%;
+width:100%;
 
 }
 .btn-success{
@@ -64,4 +65,5 @@ function showname () {
           s.innerHTML =  name.files.item(0).name;
     };
 </script>
+</body>
 </html>
