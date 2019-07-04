@@ -10,7 +10,7 @@ class Text_Converter:
 
     def __init__(self,file_url):
         self.file_url=file_url
-        #print("file url is: ",self.file_url)
+        print("file url is: ",self.file_url)
 
     def convert_pdf_to_text(self):
         file_path=self.file_url
@@ -25,9 +25,16 @@ class Text_Converter:
         file_location=os.path.join(os.getcwd(),'media','text')
         text_file=open(file_location,'w')
         write_content=text_file.write(content)
+        #print("53"*50,file_path)
+        #return file_path
         # list=[content]
         # print(list)
         #print("content coppied")
+    def get_file_path(self):
+        #file_path=self.file_url
+         #print("File url from get_file_path is : ",file_path)
+        #print("%%%%%%%%%%%%%%%%%%%%%%%%%%",self.file_url)
+        return self.file_url
     def fields_data(self):
 
          file_location=os.path.join(os.getcwd(),'media','text')

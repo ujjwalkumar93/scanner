@@ -13,8 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
+
 from django.contrib import admin
 from django.urls import path
+from django.views.static import serve
+from networkx.release import url
+
 from invoicescanner import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -24,7 +29,9 @@ urlpatterns = [
     path('', views.upload),
     path('fields/', views.fields),
     path('fields/generateqr', views.qr_generator),
-]
+
+
+]#+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

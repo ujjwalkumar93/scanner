@@ -1,9 +1,8 @@
-import django
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, render_to_response
-from django.views.decorators.csrf import csrf_protect
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
+from django.shortcuts import render
 import pyqrcode
-from pyqrcode import QRCode
+from django.views.decorators.csrf import csrf_exempt
+
 from invoicescanner.pdf_to_text import *
 from django.template import loader
 import os
@@ -11,8 +10,6 @@ from django.core.files.storage import FileSystemStorage
 import json
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPDF
-from django.template import RequestContext
-
 file_path=""
 def upload(request):
 
@@ -26,29 +23,25 @@ def upload(request):
         name = fs.save(uploaded_file.name, uploaded_file)
         context['url'] = fs.url(name)
         print("#######################################")
+        global file_path
         file_path = os.path.join(os.getcwd(),'media',name)
         print(file_path)
         print("****************************************")
         print(uploaded_file.name)
         print("==========================================")
         obj=Text_Converter(file_path)
-
         obj.convert_pdf_to_text()
         obj.fields_data()
         obj.convert_pdf_to_text()
-
         if uploaded_file.name!="doccument":
-
              return HttpResponseRedirect('fields')
-
-
     return render(request,'index.html')
-
 def fields(request):
     template = loader.get_template('fields.html')
     print("code runs well....")
     obj=Text_Converter(file_path)
-    print("code runs well....")
+
+    #print("object is:"*60,file_path)
     data=obj.fields_data()
     print("code runs well....")
     json_data=json.loads(data)
@@ -71,15 +64,9 @@ def fields(request):
 
     #print("context: ",RequestContext(request))
     return HttpResponse(template.render(rendata))
-
+@csrf_exempt
 def qr_generator(request):
-    # #context={}
-    # context=django.middleware.csrf.get_token(request)
-    # print("a"*60)
-    # data=request.POST.get('po',None)
-    # template=loader.get_template('fields.html')
-    # print(data)
-    context={}
+
     po_no=request.POST.get('po', None)
     item_no=request.POST.get('item_no',None)
     inv_no = request.POST.get('inv_no', None)
@@ -110,40 +97,44 @@ def qr_generator(request):
     # drawing.shift(200,-675)
     drawing.shift(225, -630)
     renderPDF.drawToFile(drawing, "qrpdf.pdf", autoSize=0)
-    print("QRcode inside blank pdf generated")
-    #return HttpResponseRedirect('fields')
-
-    #code for pasting blank qrcode pdf file on real time invoice pdf as watermark
     blank_pdf_qr=os.path.join(os.getcwd(),'qrpdf.pdf')
     watermarkFile = open(blank_pdf_qr, 'rb')
     pdfWatermarkReader = PyPDF2.PdfFileReader(watermarkFile)
-
-    minutesFile = open('/home/ujjwal/scanner/media/bhagwati entqrcode 02_P7vh2PJ.pdf', 'rb')
+    minutesFile = open(file_path, 'rb')
     pdfReader = PyPDF2.PdfFileReader(minutesFile)
 
     pdfWriter = PyPDF2.PdfFileWriter()
-
+    #print("b"*60)
     for pageNum in range(pdfReader.numPages):
         pageObj = pdfReader.getPage(pageNum)
         pageObj.mergePage(pdfWatermarkReader.getPage(0))
         pdfWriter.addPage(pageObj)
-
-    resultPdfFile = open('watermarkedCover.pdf', 'wb')
+        base_name=os.path.join(os.getcwd(),'media','result',"bhagwati_invoice.pdf")
+    resultPdfFile = open(base_name, 'wb')
     pdfWriter.write(resultPdfFile)
-
     watermarkFile.close()
     minutesFile.close()
     resultPdfFile.close()
-    print("printing self path: ",)
-
-    return HttpResponse(request,'generateqr.html')
-
-
-
-
+    template=loader.get_template("fields.html")
+    link = 'http://{}/{}'.format(request.get_host(), base_name)
+    data={
+        'pdf_path':link,
+     }
 
 
+    return HttpResponse(template.render(data))
+    #return HttpResponse(path_to_pdf_file)
 
+def pdf_view(request):
+    fs = FileSystemStorage()
+    filename = 'bhagwati_invoice.pdf'
+    if fs.exists(filename):
+        with fs.open(filename) as pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename="mypdf.pdf"'
+            return response
+    else:
+        return HttpResponseNotFound('The requested pdf was not found in our server.')
 
 
 
