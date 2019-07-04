@@ -1,8 +1,11 @@
+import datetime
+from django.utils import timezone
+
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
 import pyqrcode
 from django.views.decorators.csrf import csrf_exempt
-
+from datetime import datetime
 from invoicescanner.pdf_to_text import *
 from django.template import loader
 import os
@@ -11,6 +14,8 @@ import json
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPDF
 file_path=""
+
+
 def upload(request):
 
     context = {}
@@ -69,6 +74,16 @@ def qr_generator(request):
 
     po_no=request.POST.get('po', None)
     item_no=request.POST.get('item_no',None)
+    part_qty=request.POST.get('part_qty',None)
+    gross_rate=request.POST.get('gross_rate',None)
+    net_rate = request.POST.get('net_rate', None)
+    cgst_value = request.POST.get('cgst_value', None)
+    sgst_value = request.POST.get('sgst_value', None)
+    ugst_value = request.POST.get('ugst_value', None)
+    cgst_rate = request.POST.get('cgst_rate', None)
+    sgst_rate = request.POST.get('sgst_rate', None)
+    ugst_rate = request.POST.get('ugst_rate', None)
+    cess = request.POST.get('cess', None)
     inv_no = request.POST.get('inv_no', None)
     inv_date = request.POST.get('inv_date', None)
     vendor_code = request.POST.get('vendor_code', None)
@@ -78,8 +93,13 @@ def qr_generator(request):
     invoice_value = request.POST.get('invoice_value', None)
     HSN_code = request.POST.get('HSN_code', None)
     #print("data from qr: ",po_no)
+    datalist = [po_no, item_no,part_qty,inv_no,inv_date,gross_rate,net_rate,vendor_code,part_no,cgst_value,sgst_value,igst_value,ugst_value,cgst_rate,sgst_rate,igst_rate,ugst_rate,cess,invoice_value,HSN_code]
+    #datalist=[po_no,item_no,inv_no,inv_date,vendor_code,part_no,igst_value,igst_rate,invoice_value,HSN_code]
+    for n, i in enumerate(datalist):
+        if i=="":
+            datalist[n] ="0.00"
+    print("after removing blank space: ",datalist)
 
-    datalist=[po_no,item_no,inv_no,inv_date,vendor_code,part_no,igst_value,igst_rate,invoice_value,HSN_code]
     data=",".join(datalist)
     print("list is: ",datalist)
     qr=pyqrcode.create(data)
@@ -109,7 +129,14 @@ def qr_generator(request):
         pageObj = pdfReader.getPage(pageNum)
         pageObj.mergePage(pdfWatermarkReader.getPage(0))
         pdfWriter.addPage(pageObj)
-        base_name=os.path.join(os.getcwd(),'media','result',"bhagwati_invoice.pdf")
+        base_name="bhagwati_invoice_"
+        #cur_time=timezone.now()
+        now = datetime.now()
+        time = now.strftime("%H:%M:%S")
+        print("current time is: ", time)
+        now_time = "".join(time)
+        res_file_name=base_name+now_time
+        base_name=os.path.join(os.getcwd(),'media','result',res_file_name)
     resultPdfFile = open(base_name, 'wb')
     pdfWriter.write(resultPdfFile)
     watermarkFile.close()
@@ -118,10 +145,10 @@ def qr_generator(request):
     template=loader.get_template("fields.html")
     link = 'http://{}/{}'.format(request.get_host(), base_name)
     data={
-        'pdf_path':link,
-     }
+         'pdf_name':res_file_name,
+      }
 
-
+    print(data)
     return HttpResponse(template.render(data))
     #return HttpResponse(path_to_pdf_file)
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
+<html lang="en" xmlns="http://www.w3.org/1999/html" style="background-color:#4b4c9d">
+<head >
     <meta charset="UTF-8">
     <title>Edit PDF Fields</title>
     {{ csrf_token }}
@@ -11,10 +11,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 </html>
-<div style="background-color:#cc7efc">
-<h2 style="text-align:center;color:blue;font-size:23px;font-weight:bold;">Please Check All Fields Are Correct</h2>
+<div style="background-color:#4b4c9d">
+<h2 style="text-align:center;color:#ffffff;font-size:23px;font-weight:bold;margin-bottom:46px;">Please Check All Fields Are Correct</h2>
 
-<div class="container" style="margin-left:15%;margin-top:46px;">
+<div class="container" style="margin-left:15%;margin-top:6px;">
 
   <form class="form-horizontal" method="post" action="generateqr"  >
 {{ csrf_token }}
@@ -152,20 +152,25 @@
     <div class="form-group">
       <div class="col-sm-offset-3 col-sm-10">
  <span>
-        <button type="submit" class="btn btn-primary" >Generate QRCode</button>
+        <button type="submit" class="btn btn-primary" style="background-color:#fbba00;">Generate QRCode</button>
 
  </span>
       </div>
     </div>
 
   </form>
-    <a href="/media/result/bhagwati_invoice.pdf">
+    <a href="/media/result/{{ pdf_name }}">
 
-        <button type="submit" class="btn btn-primary" style="margin-left:26%;margin-bottom:30px;">Download Invoice</button></a>
+        <button type="submit" class="btn btn-primary" style="margin-left:26%;margin-bottom:30px;background-color:#fbba00;">Download Invoice</button></a>
 </div>
 </div>
 </body>
 
+<style>
 
+    .form-group{
+    color:#ffffff;
+    }
+</style>
 
 </html>

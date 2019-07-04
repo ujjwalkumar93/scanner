@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<title>Invoice Scanner</title>
+<title >Invoice QR Code Generator </title>
 <head>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="background-color:#8d47b3">
-<h2 >Invoice Scanner</h2>
+<body style="background-color:#4b4c9d">
+<h2 >Invoice QR Code Generator</h2>
 <!-- Latest compiled and minified Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
  <div class="container-fluid">
 <form  method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="custom-file">
+    <div class="custom-file" style="margin-left:20%;margin-right:20%;width:60%">
   <input type="file" class="custom-file-input" id="fileInput" multiple onchange="showname()" name="doccument">
   <label class="custom-file-label" id="filename">Choose Invoice </label>
 
-            <button type="submit" class="btn btn-primary" >Upload Invoice</button>
+            <button type="submit" class="btn btn-primary"  style="background-color:#fbba00;color:black">Upload Invoice</button>
             <!--button type="button" class="btn btn-success" >Next  ->></button-->
 
 </div>
@@ -30,7 +30,7 @@ padding-top: 1em;
 }
 h2 {
 text-align:center;
-color:#7fcf08;
+color:#ffffff;
 font-weight:900;
 margin-top:160px;
 }
@@ -52,6 +52,9 @@ display: block;
 margin:auto;
 margin-top:46px;
 
+}
+#fileInput{
+background-color:#545451;
 }
 
 </style>
