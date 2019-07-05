@@ -64,7 +64,7 @@ class Text_Converter:
                     #print("Gst line is: ",gst_s)
                     word_list=line.split()
                     gst_no=word_list[word_list.index("MaharashtraDate")-6][21:36]
-                    #print("Gst is: ",gst_no)
+                    print("Gst is: "*20,gst_no)
                  if invoice_date_s:
                      word_list = line.split()
                      invoice_date = word_list[word_list.index("MaharashtraDate")+1][1:12]
@@ -95,7 +95,7 @@ class Text_Converter:
                      word_list = line.split()
                      #print(word_list)
                      #print(word_list)
-                     igst_rate = word_list[word_list.index("TotalAmount") -7]
+                     igst_rate = word_list[word_list.index("TotalAmount") -7][0:2]
                      #print("igst% : ", igst_rate)
                  if igst_amt_s:
                      word_list = line.split()
@@ -109,7 +109,7 @@ class Text_Converter:
                       invoice_num_with_len= word_list[word_list.index("Challan") - 2]
                       length_invoice=len(invoice_num_with_len)
                       actual_len=length_invoice-7
-                      invoice_num=invoice_num_with_len[11:actual_len]
+                      invoice_num=invoice_num_with_len[12:actual_len]
                       #print("Invoice number: ", invoice_num)
 
              print("here is all amount: ",invoice_num,igst_rate,invoice_amt,vendor_code,invoice_date)

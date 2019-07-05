@@ -1,21 +1,9 @@
 import PyPDF2
-
-watermarkFile = open('/home/ujjwal/scanner/invoicescanner/realfile.pdf', 'rb')
-pdfWatermarkReader = PyPDF2.PdfFileReader(watermarkFile)
-
-minutesFile = open('/home/ujjwal/scanner/media/bhagwati entqrcode 02_P7vh2PJ.pdf', 'rb')
-pdfReader = PyPDF2.PdfFileReader(minutesFile)
-
-pdfWriter = PyPDF2.PdfFileWriter()
-
-for pageNum in range(pdfReader.numPages):
-    pageObj = pdfReader.getPage(pageNum)
-    pageObj.mergePage(pdfWatermarkReader.getPage(0))
-    pdfWriter.addPage(pageObj)
-
-resultPdfFile = open('watermarkedCover.pdf', 'wb')
-pdfWriter.write(resultPdfFile)
-
-watermarkFile.close()
-minutesFile.close()
-resultPdfFile.close()
+pdf_file = open('/home/ujjwal/Downloads/365.pdf','rb')
+read_pdf = PyPDF2.PdfFileReader(pdf_file)
+number_of_pages = read_pdf.getNumPages()
+page = read_pdf.getPage(0)
+page_content = page.extractText()
+file=open('/home/ujjwal/Downloads/pdftotext','a')
+file.write(page_content)
+print(page_content)
