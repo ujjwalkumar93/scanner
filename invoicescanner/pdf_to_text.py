@@ -1,4 +1,6 @@
 import os
+from datetime import datetime
+
 import pandas as pd
 import tabula
 import PyPDF2
@@ -25,15 +27,9 @@ class Text_Converter:
         file_location=os.path.join(os.getcwd(),'media','text')
         text_file=open(file_location,'w')
         write_content=text_file.write(content)
-        #print("53"*50,file_path)
-        #return file_path
-        # list=[content]
-        # print(list)
-        #print("content coppied")
+
     def get_file_path(self):
-        #file_path=self.file_url
-         #print("File url from get_file_path is : ",file_path)
-        #print("%%%%%%%%%%%%%%%%%%%%%%%%%%",self.file_url)
+
         return self.file_url
     def fields_data(self):
 
@@ -51,6 +47,9 @@ class Text_Converter:
                  igst_s=re.search(r'TotalAmount', line)
                  igst_amt_s = re.search(r'TotalAmount', line)
                  invoice_num_s = re.search(r'Challan', line)
+                 part_qty_s=re.search(r'Total', line)
+                 rate_per_qty_s=re.search(r'Total', line)
+                 net_rate_s=re.search(r'Total', line)
                  #print(po_s.group(0))
                  if po_s:
                      word_list=line.split()
@@ -67,8 +66,38 @@ class Text_Converter:
                     print("Gst is: "*20,gst_no)
                  if invoice_date_s:
                      word_list = line.split()
-                     invoice_date = word_list[word_list.index("MaharashtraDate")+1][1:12]
-                     #print("Invoice date: ",invoice_date)
+                     invoice_date_format= word_list[word_list.index("MaharashtraDate")+1][1:12]
+                     invoice_date_rep=invoice_date_format.replace('-','.')
+                     newdate=invoice_date_rep[3:6]
+                     print("new date is"*30,newdate)
+                     #new_date=invoice_date.strftime('%m/%d/%y')
+
+                     m = {
+                         'jan': '01',
+                         'feb': '02',
+                         'mar': '03',
+                         'apr': '04',
+                         'may': '05',
+                         'jun': '06',
+                         'jul': '07',
+                         'aug': '08',
+                         'sep': '09',
+                         'oct': '10',
+                         'nov': '11',
+                         'dec': '12'
+                     }
+                     s = newdate.strip()[:3].lower()
+
+                     try:
+                         out = m[s]
+                         invoice_date=invoice_date_rep.replace(newdate,out)
+
+                         print("m"*10,out)
+                         #return out
+                     except:
+                         raise ValueError('Not a month')
+
+
                  if vendor_code_s:
                      word_list = line.split()
                      vendor_code = word_list[word_list.index(":Reg.Type") + 4][0:6]
@@ -83,7 +112,7 @@ class Text_Converter:
                      length_hsn=len(HSN_no_len)
                      init_len=length_hsn-8
                      HSN_no=HSN_no_len[init_len:length_hsn]
-                     print("HSN NO : ", HSN_no)
+                     #print("HSN NO : ", HSN_no)
                  if invoice_value_s:
                      word_list = line.split()
                      total_amt = word_list[word_list.index("TotalAmount") -1]
@@ -111,8 +140,47 @@ class Text_Converter:
                       actual_len=length_invoice-7
                       invoice_num=invoice_num_with_len[12:actual_len]
                       #print("Invoice number: ", invoice_num)
+                 try:
+                    if part_qty_s:
+                        word_list=line.split()
+                        part_qty_trimmed = word_list[word_list.index("Total") -3][0:3]
+                        max_index=part_qty_trimmed.find('.')
+                        part_qty=part_qty_trimmed[0:max_index]
+                        #print("part No: "*
+                        print(word_list)
 
-             print("here is all amount: ",invoice_num,igst_rate,invoice_amt,vendor_code,invoice_date)
+                 except:
+                     print("part No notfound")
+
+                 try:
+                    if rate_per_qty_s:
+                         word_list = line.split()
+                         part_qty_rate_full = word_list[word_list.index("Total") -3]
+                         first_point_pos=part_qty_rate_full.find('.')
+                         init_length=first_point_pos+3
+
+                         full_len=len(part_qty_rate_full)
+                         first_half = part_qty_rate_full[init_length:full_len]
+                         secon_point_pos=first_half.find('.')+3
+                         part_qty_rate=first_half[0:secon_point_pos]
+
+
+                         print("part_rate is: "*20,part_qty_rate)
+                     #print(secon_point_pos)
+                         gross_rate_format=float(part_qty)*float(part_qty_rate)
+                         gross_rate=format(gross_rate_format,'.2f')
+                         print("gross rate: "*20,gross_rate)
+                 except:
+                     print("rate per qty not found")
+                 try:
+                    if net_rate_s:
+                        word_list = line.split()
+                        net_rate= word_list[word_list.index("Total") - 2]
+                        print("net rate is:"*20,net_rate)
+                 except:
+                     print("net rate not found")
+
+             #print("here is all amount: ",invoice_num,igst_rate,invoice_amt,vendor_code,invoice_date)
              json_obj={
                  'po_no': po_num,
                  'gst_no' : gst_no,
@@ -123,9 +191,13 @@ class Text_Converter:
                  'invoice_val': invoice_amt,
                  'igst_rate': igst_rate,
                  'igst_amt': igst_amt,
-                 'invoice_num': invoice_num
+                 'invoice_num': invoice_num,
+                 'part_qty':part_qty,
+                 'gross_rate': gross_rate,
+                 'net_rate':net_rate,
              }
              data=json.dumps(json_obj)
+             print("data is: ",data)
              return data
 
 

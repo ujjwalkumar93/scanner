@@ -64,6 +64,9 @@ def fields(request):
         'total_inv_val': json_data['invoice_val'],
         'hsn_no':json_data['hsn_no'],
         'ord_item_no': "10",
+        'part_qty': json_data['part_qty'],
+        'gross_rate': json_data['gross_rate'],
+        'net_rate':json_data['net_rate'],
 
     }
 
@@ -104,7 +107,7 @@ def qr_generator(request):
     print("list is: ",datalist)
     qr=pyqrcode.create(data)
     #qr.png("qrcode")
-    qr.svg("qrcode", scale=.8)
+    qr.svg("qrcode", scale=1.1)
     #writing code to get location on QRCode
     qrcode_path=os.path.join(os.getcwd(),'qrcode')
     print("path for qrcode is: ",qrcode_path)
@@ -115,7 +118,7 @@ def qr_generator(request):
     drawing.height *= scaleFactor
     drawing.scale(scaleFactor, scaleFactor)
     # drawing.shift(200,-675)
-    drawing.shift(225, -630)
+    drawing.shift(200, -605)
     renderPDF.drawToFile(drawing, "qrpdf.pdf", autoSize=0)
     blank_pdf_qr=os.path.join(os.getcwd(),'qrpdf.pdf')
     watermarkFile = open(blank_pdf_qr, 'rb')
