@@ -1,0 +1,4 @@
+Django==2.2.3
+pyqrcode
+PyPDF2
+svglib
