@@ -43,15 +43,10 @@ def upload(request):
     return render(request,'index.html')
 def fields(request):
     template = loader.get_template('fields.html')
-    print("code runs well....")
+    #creating object of pdf_to_text.py file so we can get json data returned by field_data from Text_converter class
     obj=Text_Converter(file_path)
-
-    #print("object is:"*60,file_path)
     data=obj.fields_data()
-    print("code runs well....")
     json_data=json.loads(data)
-    print("code runs well....")
-    #print("data is :",json_data)
     rendata={
         'Po_No':json_data["po_no"],
         'invoice_no': json_data['invoice_num'],
@@ -70,7 +65,6 @@ def fields(request):
 
     }
 
-    #print("context: ",RequestContext(request))
     return HttpResponse(template.render(rendata))
 @csrf_exempt
 def qr_generator(request):
@@ -97,28 +91,22 @@ def qr_generator(request):
     HSN_code = request.POST.get('HSN_code', None)
     #print("data from qr: ",po_no)
     datalist = [po_no, item_no,part_qty,inv_no,inv_date,gross_rate,net_rate,vendor_code,part_no,cgst_value,sgst_value,igst_value,ugst_value,cgst_rate,sgst_rate,igst_rate,ugst_rate,cess,invoice_value,HSN_code]
-    #datalist=[po_no,item_no,inv_no,inv_date,vendor_code,part_no,igst_value,igst_rate,invoice_value,HSN_code]
+    # adding 0.00 as default value for blank fields
     for n, i in enumerate(datalist):
         if i=="":
             datalist[n] ="0.00"
-    print("after removing blank space: ",datalist)
-
     data=",".join(datalist)
-    print("list is: ",datalist)
     qr=pyqrcode.create(data)
-    #qr.png("qrcode")
     qr.svg("qrcode", scale=1.1)
     #writing code to get location on QRCode
     qrcode_path=os.path.join(os.getcwd(),'qrcode')
-    print("path for qrcode is: ",qrcode_path)
-    #convert qrcode in blank pdf with qrcode in footer
     drawing = svg2rlg(qrcode_path)
     scaleFactor = 1
     drawing.width *= scaleFactor
     drawing.height *= scaleFactor
     drawing.scale(scaleFactor, scaleFactor)
-    # drawing.shift(200,-675)
     drawing.shift(200, -605)
+    #creating qrcode on blank pdf so later we can merge as watermark on origional pdf
     renderPDF.drawToFile(drawing, "qrpdf.pdf", autoSize=0)
     blank_pdf_qr=os.path.join(os.getcwd(),'qrpdf.pdf')
     watermarkFile = open(blank_pdf_qr, 'rb')
@@ -127,13 +115,11 @@ def qr_generator(request):
     pdfReader = PyPDF2.PdfFileReader(minutesFile)
 
     pdfWriter = PyPDF2.PdfFileWriter()
-    #print("b"*60)
     for pageNum in range(pdfReader.numPages):
         pageObj = pdfReader.getPage(pageNum)
         pageObj.mergePage(pdfWatermarkReader.getPage(0))
         pdfWriter.addPage(pageObj)
         base_name="bhagwati_invoice_"
-        #cur_time=timezone.now()
         now = datetime.now()
         time = now.strftime("%H:%M:%S")
         print("current time is: ", time)
@@ -151,10 +137,8 @@ def qr_generator(request):
          'pdf_name':res_file_name,
       }
 
-    print(data)
     return HttpResponse(template.render(data))
-    #return HttpResponse(path_to_pdf_file)
-
+# code for downloading result pdf file
 def pdf_view(request):
     fs = FileSystemStorage()
     filename = 'bhagwati_invoice.pdf'

@@ -50,6 +50,7 @@ class Text_Converter:
                  part_qty_s=re.search(r'Total', line)
                  rate_per_qty_s=re.search(r'Total', line)
                  net_rate_s=re.search(r'Total', line)
+                 tax_category_s=re.search(r'TotalAmount', line)
                  #print(po_s.group(0))
                  if po_s:
                      word_list=line.split()
@@ -63,15 +64,14 @@ class Text_Converter:
                     #print("Gst line is: ",gst_s)
                     word_list=line.split()
                     gst_no=word_list[word_list.index("MaharashtraDate")-6][21:36]
-                    print("Gst is: "*20,gst_no)
+                    #print("Gst is: "*20,gst_no)
                  if invoice_date_s:
                      word_list = line.split()
                      invoice_date_format= word_list[word_list.index("MaharashtraDate")+1][1:12]
                      invoice_date_rep=invoice_date_format.replace('-','.')
                      newdate=invoice_date_rep[3:6]
-                     print("new date is"*30,newdate)
+                     #print("new date is"*30,newdate)
                      #new_date=invoice_date.strftime('%m/%d/%y')
-
                      m = {
                          'jan': '01',
                          'feb': '02',
@@ -122,8 +122,6 @@ class Text_Converter:
                      #print("TotalAmount ", invoice_amt)
                  if igst_s:
                      word_list = line.split()
-                     #print(word_list)
-                     #print(word_list)
                      igst_rate = word_list[word_list.index("TotalAmount") -7][0:2]
                      #print("igst% : ", igst_rate)
                  if igst_amt_s:
@@ -132,7 +130,33 @@ class Text_Converter:
                      word_len=len(igst_amt_with_len)
                      actual_len=word_len-5
                      igst_amt=igst_amt_with_len[0:actual_len]
-                     #print("IGST Amt: ", igst_amt)
+                     #print("IGST Amt: ", igst_amt) """
+                 if tax_category_s:
+                     word_list = line.split()
+                     tax_cat=word_list[word_list.index("TotalAmount") -8]
+                     my_len=len(tax_cat)
+                     init_len=my_len-5
+                     #code for differentiate tax categories
+                     if tax_cat == "I-GST":
+                         print("yes git the tax category"*20)
+                         """if igst_s:
+                             word_list = line.split()
+                             igst_rate = word_list[word_list.index("TotalAmount") - 7][0:2]
+                             return igst_rate
+                             # print("igst% : ", igst_rate)
+                         if igst_amt_s:
+                             word_list = line.split()
+                             igst_amt_with_len = word_list[word_list.index("TotalAmount") - 8]
+                             word_len = len(igst_amt_with_len)
+                             actual_len = word_len - 5
+                             igst_amt = igst_amt_with_len[0:actual_len]
+                             return igst_amt
+                     elif tax_cat=="S-GST":
+                         print("Not found") """
+
+                     print("tax field is: "*20,tax_cat)
+                     print("tax_cat : "*20,tax_cat[init_len:my_len])
+
                  if invoice_num_s:
                       word_list = line.split()
                       invoice_num_with_len= word_list[word_list.index("Challan") - 2]
@@ -165,7 +189,7 @@ class Text_Converter:
                          part_qty_rate=first_half[0:secon_point_pos]
 
 
-                         print("part_rate is: "*20,part_qty_rate)
+                         #print("part_rate is: "*20,part_qty_rate)
                      #print(secon_point_pos)
                          gross_rate_format=float(part_qty)*float(part_qty_rate)
                          gross_rate=format(gross_rate_format,'.2f')
@@ -176,7 +200,7 @@ class Text_Converter:
                     if net_rate_s:
                         word_list = line.split()
                         net_rate= word_list[word_list.index("Total") - 2]
-                        print("net rate is:"*20,net_rate)
+                        #print("net rate is:"*20,net_rate)
                  except:
                      print("net rate not found")
 
