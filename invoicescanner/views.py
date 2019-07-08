@@ -1,6 +1,4 @@
 import datetime
-from django.utils import timezone
-
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
 import pyqrcode

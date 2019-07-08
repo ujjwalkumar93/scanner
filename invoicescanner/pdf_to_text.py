@@ -1,13 +1,8 @@
 import os
-from datetime import datetime
-
-import pandas as pd
-import tabula
 import PyPDF2
 import re
 import json
-import xlwt
-from xlwt import Workbook
+
 class Text_Converter:
 
     def __init__(self,file_url):
