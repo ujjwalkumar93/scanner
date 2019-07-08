@@ -118,18 +118,25 @@ class Text_Converter:
                      total_amt = word_list[word_list.index("TotalAmount") -1]
                      str_len=len(total_amt)
                      total_alpha=str_len-5
-                     invoice_amt=total_amt[0:total_alpha]
+                     invoice_amts=total_amt[0:total_alpha]
+                     invoice_amt=invoice_amts.replace(",","")
+
                      #print("TotalAmount ", invoice_amt)
                  if igst_s:
                      word_list = line.split()
-                     igst_rate = word_list[word_list.index("TotalAmount") -7][0:2]
+                     igst_rate_act = word_list[word_list.index("TotalAmount") -7][0:2]
+                     igst=igst_rate_act.replace("%","")
+                     print("%"*50,igst)
+                     igst_rate=igst+".00"
+
                      #print("igst% : ", igst_rate)
                  if igst_amt_s:
                      word_list = line.split()
                      igst_amt_with_len = word_list[word_list.index("TotalAmount") -8]
                      word_len=len(igst_amt_with_len)
                      actual_len=word_len-5
-                     igst_amt=igst_amt_with_len[0:actual_len]
+                     igst_amts=igst_amt_with_len[0:actual_len]
+                     igst_amt=igst_amts.replace(",","")
                      #print("IGST Amt: ", igst_amt) """
                  if tax_category_s:
                      word_list = line.split()
