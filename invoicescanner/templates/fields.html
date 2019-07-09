@@ -1,34 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" style="background-color:#4b4c9d">
-<head >
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>Edit PDF Fields</title>
-    {{ csrf_token }}
-     <meta charset="utf-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-</html>
-<div style="background-color:#4b4c9d">
+<body style="background-color:#4b4c9d">
 <h2 style="text-align:center;color:#ffffff;font-size:23px;font-weight:bold;margin-bottom:46px;">Please Check All Fields Are Correct</h2>
+<div class="container" style="margin-top:46px;">
+<form method="post" action="generateqr" >
 
-<div class="container" style="margin-left:15%;margin-top:6px;">
-
-  <form class="form-horizontal" method="post" action="generateqr"  >
-{{ csrf_token }}
-    <div class="form-group">
+     <div class="form-group">
 
       <label class="control-label col-sm-3" >PO Number: </label>
       <div class="col-sm-3">
-        <input type="text" class="form-control"  name="po" value= "{{ Po_No }}">
+        <input type="text" class="form-control"  name="po" value= "{{ Po_No }}" >
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-3" >PO Order Item No. :</label>
+      <label class="control-label col-sm-3"  >PO Order Item No. :</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="item_no" value="{{ ord_item_no }}">
+        <input type="text" class="form-control" name="item_no" value="{{ ord_item_no }}" >
       </div>
     </div>
 
@@ -77,13 +73,13 @@
        <div class="form-group">
       <label class="control-label col-sm-3" >Tax values CGST :</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="cgst_value">
+        <input type="text" class="form-control" name="cgst_value" value="{{cgst_amt}}">
       </div>
     </div>
        <div class="form-group">
       <label class="control-label col-sm-3" >Tax values SGST :</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="sgst_value">
+        <input type="text" class="form-control" name="sgst_value" value="{{sgst_amt}}">
       </div>
     </div>
        <div class="form-group">
@@ -95,19 +91,19 @@
        <div class="form-group">
       <label class="control-label col-sm-3" >Tax values UGST :</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="ugst_value">
+        <input type="text" class="form-control" name="ugst_value" value="{{ugst_value}}">
       </div>
     </div>
        <div class="form-group">
       <label class="control-label col-sm-3" >Tax Rates CGST % :</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="cgst_rate">
+        <input type="text" class="form-control" name="cgst_rate" value="{{cgst_rate}}">
       </div>
     </div>
        <div class="form-group">
       <label class="control-label col-sm-3" >Tax Rates SGST % :</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="sgst_rate">
+        <input type="text" class="form-control" name="sgst_rate" value="{{sgst_rate}}">
       </div>
     </div>
        <div class="form-group">
@@ -117,15 +113,15 @@
       </div>
     </div>
        <div class="form-group">
-      <label class="control-label col-sm-3" >Tax values UGST % :</label>
+      <label class="control-label col-sm-3" >Tax Rate UGST % :</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="ugst_rate">
+        <input type="text" class="form-control" name="ugst_rate" value="{{ugst_rate}}">
       </div>
     </div>
        <div class="form-group">
       <label class="control-label col-sm-3" >cess :</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="cess">
+        <input type="text" class="form-control" name="cess" value="{{cess}}">
       </div>
     </div>
        <div class="form-group">
@@ -142,35 +138,65 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-10">
+ <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-10">
         <div class="checkbox">
-          <label><input type="checkbox" name="remember"> All fields are correct</label>
+          <label><input type="checkbox" name="remember" id="checkme" onclick="change_button(this,'qrbtn')"> All fields are correct</label>
         </div>
       </div>
-    </div>
+</div>
+
     <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-10">
+      <div class="col-sm-offset-4 col-sm-10">
  <span>
-        <button type="submit" class="btn btn-primary" style="background-color:#fbba00;color:black;">Generate QRCode</button>
+
+         <button type="submit" class="btn btn-primary" style="background-color:#fbba00;color:black;" id="qrbtn" disabled="disabled">Generate QRCode</button>
 
  </span>
       </div>
-    </div>
-
-  </form>
-    <a href="/media/result/{{ pdf_name }}">
-
-        <button type="submit" class="btn btn-primary" style="margin-left:26%;margin-bottom:30px;background-color:#fbba00;color:black;">Download Invoice</button></a>
 </div>
+
+</form>
+
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-10">
+        <div class="checkbox">
+            <a href="/media/result/{{ pdf_name }}">
+
+                <button type="submit" class="btn btn-primary" style="margin-bottom:30px;background-color:#fbba00;color:black;" id="dwnbtn" onclick="location.href = '/';">Download Invoice</button></a>
+        </div>
+      </div>
+</div>
+
+
 </div>
 </body>
-
 <style>
-
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #fbba00;
+  border-radius: 4px;
+}
     .form-group{
     color:#ffffff;
     }
 </style>
+<script>
 
+
+function change_button(checkbx,button_id) {
+    var btn1 = document.getElementById(button_id);
+    //var btn2 = document.getElementById(btn_id);
+    if (checkbx.checked == true) {
+        btn1.disabled = "";
+        //btn2.disabled = "";
+    } else {
+        btn1.disabled = "disabled";
+        //btn2.disabled = "disabled";
+    }
+}
+</script>
 </html>

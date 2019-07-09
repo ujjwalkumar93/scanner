@@ -25,13 +25,8 @@ def upload(request):
         fs = FileSystemStorage()
         name = fs.save(uploaded_file.name, uploaded_file)
         context['url'] = fs.url(name)
-        print("#######################################")
         global file_path
         file_path = os.path.join(os.getcwd(),'media',name)
-        print(file_path)
-        print("****************************************")
-        print(uploaded_file.name)
-        print("==========================================")
         obj=Text_Converter(file_path)
         obj.convert_pdf_to_text()
         obj.fields_data()
@@ -60,6 +55,14 @@ def fields(request):
         'part_qty': json_data['part_qty'],
         'gross_rate': json_data['gross_rate'],
         'net_rate':json_data['net_rate'],
+        'sgst_rate':json_data['sgst_rate'],
+        'cgst_rate':json_data['cgst_rate'],
+        'sgst_amt':json_data['sgst_amt'],
+        'cgst_amt': json_data['cgst_amt'],
+        'ugst_rate':'0.00',
+        'ugst_value':'0.00',
+        'cess':'0.00'
+
 
     }
 
@@ -120,7 +123,6 @@ def qr_generator(request):
         base_name="bhagwati_invoice_"
         now = datetime.now()
         time = now.strftime("%H:%M:%S")
-        print("current time is: ", time)
         now_time = "".join(time)
         res_file_name=base_name+now_time
         base_name=os.path.join(os.getcwd(),'media','result',res_file_name)
@@ -135,9 +137,13 @@ def qr_generator(request):
          'pdf_name':res_file_name,
       }
 
+    #extra code added
+
+    #code ends here
+
     return HttpResponse(template.render(data))
 # code for downloading result pdf file
-def pdf_view(request):
+"""def pdf_view(request):
     fs = FileSystemStorage()
     filename = 'bhagwati_invoice.pdf'
     if fs.exists(filename):
@@ -146,7 +152,7 @@ def pdf_view(request):
             response['Content-Disposition'] = 'attachment; filename="mypdf.pdf"'
             return response
     else:
-        return HttpResponseNotFound('The requested pdf was not found in our server.')
+        return HttpResponseNotFound('The requested pdf was not found in our server.')"""
 
 
 
