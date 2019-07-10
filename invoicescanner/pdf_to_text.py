@@ -17,6 +17,7 @@ class Text_Converter:
         total_pages=pdf_reader.numPages
         #print("Total number of pages: ",total_pages)
         page_obj=pdf_reader.getPage(0 )
+
         content=page_obj.extractText()
         #print(content)
 
@@ -47,6 +48,12 @@ class Text_Converter:
                  rate_per_qty_s=re.search(r'Total', line)
                  net_rate_s=re.search(r'Total', line)
                  tax_category_s=re.search(r'TotalAmount', line)
+                 word_list = line.split()
+                 temp_cat = word_list[word_list.index("TotalAmount") - 8]
+                 offset = 0
+
+                 if 'gst' not in temp_cat.lower():
+                     offset = 1
                  #print(po_s.group(0))
                  try:
                     if po_s:
@@ -125,7 +132,7 @@ class Text_Converter:
                  try:
                     if invoice_value_s:
                         word_list = line.split()
-                        total_amt = word_list[word_list.index("TotalAmount") -1]
+                        total_amt = word_list[( word_list.index("TotalAmount") - offset ) - 1]
                         str_len=len(total_amt)
                         total_alpha=str_len-5
                         invoice_amts=total_amt[0:total_alpha]
@@ -137,16 +144,20 @@ class Text_Converter:
                  try:
                     if tax_category_s:
                         word_list = line.split()
-                        tax_cat=word_list[word_list.index("TotalAmount") -8]
+                        tax_cat=word_list[( word_list.index("TotalAmount") - offset ) - 8]
+
+                        if 'gst' not in tax_cat.lower():
+                            tax_cat = word_list[( word_list.index("TotalAmount") - offset ) - 9]
+
                         my_len=len(tax_cat)
                         init_len=my_len-5
                         #code for differentiate tax categories
-                 except:
-                     print("tax category not found")
+                 except Exception as e:
+                     print("tax category not found: ", repr(e))
                  try:
                     if igst_s and tax_cat[init_len:my_len]=='I-Gst':
                         word_list = line.split()
-                        igst_rate_act = word_list[word_list.index("TotalAmount") -7][0:2]
+                        igst_rate_act = word_list[( word_list.index("TotalAmount") - offset ) -7][0:2]
                         igst=igst_rate_act.replace("%","")
                         #print("%"*50,igst)
                         igst_rate=igst+".00"
@@ -156,25 +167,25 @@ class Text_Converter:
                         cgst_amt="0.00"
                     elif igst_s and tax_cat[init_len:my_len]=='S-Gst':
                         word_list = line.split()
-                        sgst_rate_act = word_list[word_list.index("TotalAmount") - 7][0:2]
+                        sgst_rate_act = word_list[( word_list.index("TotalAmount") - offset ) - 7][0:2]
                         sgst = sgst_rate_act.replace("%", "")
                         sgst_rate = sgst + ".00"
                         #print("%" * 50, sgst_rate)
 
-                        cgst_rate_act=word_list[word_list.index("TotalAmount") - 13]
+                        cgst_rate_act=word_list[( word_list.index("TotalAmount") - offset ) - 13]
                         #print("#"*20,cgst_rate_act)
                         cgst=cgst_rate_act.replace('%','')
                         cgst_rate=cgst+".00"
                         #print("@"*30,cgst_rate)
 
                         #code for sgst amt
-                        sgst_amt_act = word_list[word_list.index("TotalAmount") - 8]
+                        sgst_amt_act = word_list[( word_list.index("TotalAmount") - offset ) - 8]
                         total_len=len(sgst_amt_act)-5
                         sgst_amt=sgst_amt_act[0:total_len]
                         #print("+"*20,sgst_amt)
 
                         #code for cgst amt
-                        cgst_amt_act = word_list[word_list.index("TotalAmount") - 14]
+                        cgst_amt_act = word_list[( word_list.index("TotalAmount") - offset ) - 14]
                         total_len = len(cgst_amt_act) - 5
                         cgst_amt = cgst_amt_act[0:total_len]
                         #print("o" * 20, cgst_amt)
@@ -195,7 +206,7 @@ class Text_Converter:
                  try:
                     if igst_amt_s and tax_cat[init_len:my_len]=='I-Gst':
                         word_list = line.split()
-                        igst_amt_with_len = word_list[word_list.index("TotalAmount") -8]
+                        igst_amt_with_len = word_list[( word_list.index("TotalAmount") - offset ) -8]
                         word_len=len(igst_amt_with_len)
                         actual_len=word_len-5
                         igst_amts=igst_amt_with_len[0:actual_len]
@@ -284,8 +295,8 @@ class Text_Converter:
                  'sgst_amt': sgst_amt,
                  'cgst_amt': cgst_amt
                 }
-             except:
-                 #print("data exception handeled")
+             except Exception as e:
+                 print(e)
                  json_obj = {
                      'po_no': "NA",
                      'gst_no': "NA",

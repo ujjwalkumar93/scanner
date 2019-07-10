@@ -34,6 +34,8 @@ def upload(request):
         if uploaded_file.name!="doccument":
              return HttpResponseRedirect('fields')
     return render(request,'index.html')
+
+
 def fields(request):
     template = loader.get_template('fields.html')
     #creating object of pdf_to_text.py file so we can get json data returned by field_data from Text_converter class
@@ -142,8 +144,10 @@ def qr_generator(request):
     #code ends here
 
     return HttpResponse(template.render(data))
+
 # code for downloading result pdf file
 """def pdf_view(request):
+    import pdb;pdb.set_trace()
     fs = FileSystemStorage()
     filename = 'bhagwati_invoice.pdf'
     if fs.exists(filename):
