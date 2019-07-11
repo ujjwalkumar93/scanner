@@ -132,7 +132,7 @@ class Text_Converter:
                  try:
                     if invoice_value_s:
                         word_list = line.split()
-                        total_amt = word_list[( word_list.index("TotalAmount") - offset ) - 1]
+                        total_amt = word_list[( word_list.index("TotalAmount") ) - 1]
                         str_len=len(total_amt)
                         total_alpha=str_len-5
                         invoice_amts=total_amt[0:total_alpha]

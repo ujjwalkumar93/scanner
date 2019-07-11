@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b815af5f-965d-41f7-a988-b45f8f52590a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/invoicescanner/pdf_to_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/invoicescanner/pdf_to_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invoicescanner/templates/fields.html" beforeDir="false" afterPath="$PROJECT_DIR$/invoicescanner/templates/fields.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invoicescanner/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/invoicescanner/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/invoicescanner/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/invoicescanner/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/text" beforeDir="false" afterPath="$PROJECT_DIR$/media/text" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qrcode" beforeDir="false" afterPath="$PROJECT_DIR$/qrcode" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qrpdf.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/qrpdf.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,28 +19,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/invoicescanner/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
+            <state relative-caret-position="990">
               <caret line="66" column="3" selection-start-line="66" selection-start-column="3" selection-end-line="66" selection-end-column="3" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/invoicescanner/templates/fields.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="81" selection-start-line="20" selection-start-column="81" selection-end-line="20" selection-end-column="81" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/invoicescanner/templates/fields.html">
+        <entry file="file://$PROJECT_DIR$/scanner/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="187" selection-start-line="187" selection-end-line="187" />
-              <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="133">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -55,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scanner/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="25" />
+            <state relative-caret-position="304">
+              <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="25" />
               <folding>
                 <element signature="e#631#640#0" expanded="true" />
               </folding>
@@ -67,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/invoicescanner/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="154" column="88" selection-start-line="154" selection-start-column="88" selection-end-line="154" selection-end-column="88" />
+            <state relative-caret-position="1519">
+              <caret line="158" column="88" selection-start-line="158" selection-start-column="88" selection-end-line="158" selection-end-column="88" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -80,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/invoicescanner/templates/pdffile.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="14" column="7" selection-end-line="14" selection-end-column="7" />
+              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -88,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/invoicescanner/pdf_to_text.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="305" column="36" selection-start-line="305" selection-start-column="36" selection-end-line="305" selection-end-column="36" />
+            <state relative-caret-position="186">
+              <caret line="134" column="79" selection-start-line="134" selection-start-column="79" selection-end-line="134" selection-end-column="79" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -118,7 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gst</find>
       <find>vendor_c</find>
       <find>gst_n</find>
       <find>gst_no</find>
@@ -148,6 +146,7 @@
       <find>*</find>
       <find>base</find>
       <find>cess</find>
+      <find>invoice_va</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -169,13 +168,13 @@
         <option value="$PROJECT_DIR$/invoicescanner/templates/generateqr.html" />
         <option value="$PROJECT_DIR$/invoicescanner/templates/pdf_view.html" />
         <option value="$PROJECT_DIR$/invoicescanner/templates/pdffile.html" />
-        <option value="$PROJECT_DIR$/scanner/settings.py" />
         <option value="$PROJECT_DIR$/invoicescanner/test.py" />
         <option value="$PROJECT_DIR$/scanner/urls.py" />
         <option value="$PROJECT_DIR$/invoicescanner/views.py" />
-        <option value="$PROJECT_DIR$/invoicescanner/pdf_to_text.py" />
         <option value="$PROJECT_DIR$/invoicescanner/templates/index.html" />
         <option value="$PROJECT_DIR$/invoicescanner/templates/fields.html" />
+        <option value="$PROJECT_DIR$/invoicescanner/pdf_to_text.py" />
+        <option value="$PROJECT_DIR$/scanner/settings.py" />
       </list>
     </option>
   </component>
@@ -388,7 +387,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4992163" weight="0.72149837" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4992163" visible="true" weight="0.52931595" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007837" side_tool="true" weight="0.32899022" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32899022" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -435,13 +434,6 @@
     <entry file="file://$PROJECT_DIR$/invoicescanner/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/scanner/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1121">
-          <caret line="18" column="62" lean-forward="true" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/invoicescanner/templates/pdf_view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -449,65 +441,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/invoicescanner/templates/pdffile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/invoicescanner/pdf_to_text.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="305" column="36" selection-start-line="305" selection-start-column="36" selection-end-line="305" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/invoicescanner/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="990">
           <caret line="66" column="3" selection-start-line="66" selection-start-column="3" selection-end-line="66" selection-end-column="3" />
           <folding>
             <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#body#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/invoicescanner/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="154" column="88" selection-start-line="154" selection-start-column="88" selection-end-line="154" selection-end-column="88" />
+        <state relative-caret-position="1519">
+          <caret line="158" column="88" selection-start-line="158" selection-start-column="88" selection-end-line="158" selection-end-column="88" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/invoicescanner/templates/fields.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="81" selection-start-line="20" selection-start-column="81" selection-end-line="20" selection-end-column="81" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/invoicescanner/pdf_to_text.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="134" column="79" selection-start-line="134" selection-start-column="79" selection-end-line="134" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/invoicescanner/templates/pdffile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scanner/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="25" />
+        <state relative-caret-position="304">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="25" />
           <folding>
             <element signature="e#631#640#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/invoicescanner/templates/fields.html">
+    <entry file="file://$PROJECT_DIR$/scanner/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="187" selection-start-line="187" selection-end-line="187" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="133">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
