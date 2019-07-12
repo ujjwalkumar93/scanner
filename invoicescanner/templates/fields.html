@@ -16,9 +16,10 @@
 
      <div class="form-group">
 
-      <label class="control-label col-sm-3" >PO Number: </label>
+      <label class="control-label col-sm-3" s>PO Number: </label>
       <div class="col-sm-3">
-        <input type="text" class="form-control"  name="po" value= "{{ Po_No }}" >
+
+        <input type="text" class="form-control"  id="po" name="po" value= "{{ Po_No }}" >
       </div>
     </div>
     <div class="form-group">
@@ -47,7 +48,7 @@
       </div>
     </div>
        <div class="form-group">
-      <label class="control-label col-sm-3" >Vendor Invoice Basic / Gross Rate :</label>
+      <label class="control-label col-sm-3" >Vendor Invoice Basic /<br> Gross Rate :</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" name="gross_rate" value="{{ gross_rate }}">
       </div>
@@ -139,7 +140,7 @@
     </div>
 
  <div class="form-group">
-      <div class="col-sm-offset-5 col-sm-10">
+      <div class="col-sm-offset-4 col-sm-10">
         <div class="checkbox">
           <label><input type="checkbox" name="remember" id="checkme" onclick="change_button(this,'qrbtn')" > All fields are correct</label>
         </div>
@@ -147,7 +148,7 @@
 </div>
 
     <div class="form-group">
-      <div class="col-sm-offset-5 col-sm-10">
+      <div class="col-sm-offset-4 col-sm-10">
  <span>
 
          <button type="submit" class="btn btn-primary" style="background-color:#fbba00;color:black;margin-left:0px;" id="qrbtn" disabled="disabled">Generate QRCode</button>
@@ -161,15 +162,7 @@
 
 </form>
 
-    <div class="form-group">
-      <div class="col-sm-offset-4 col-sm-10">
-        <div class="checkbox">
-            <!--a href="/media/result/{{ pdf_name }}">
 
-                <button type="submit" class="btn btn-primary" style="margin-bottom:30px;background-color:#fbba00;color:black;" id="dwnbtn" onclick="location.href = '/';">Download Invoice</button></a-->
-        </div>
-      </div>
-</div>
 
 
 </div>
@@ -188,6 +181,12 @@ input[type=text] {
     }
     html {
   overflow-x: hidden;
+}
+
+.control-label.col-sm-3{
+margin-right:-80px;
+margin-left:70px;
+margin-top:5px;
 }
 
 </style>
