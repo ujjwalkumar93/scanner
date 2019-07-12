@@ -34,26 +34,31 @@ class Text_Converter:
          with open(file_location,'r+') as fl:
              i=0
              for line in fl:
-                 po_s = re.search(r'Terms (\S+)', line)
-                 gst_s = re.search(r'MaharashtraDate (\S+)', line)
-                 invoice_date_s = re.search(r'MaharashtraDate (\S+)', line)
-                 vendor_code_s = re.search(r':Reg.Type (\S+)', line)
-                 part_no_s = re.search(r':Reg.Type (\S+)', line)
-                 HSN_s = re.search(r'Total(\S+)', line)
-                 invoice_value_s = re.search(r'TotalAmount (\S+)', line)
-                 igst_s=re.search(r'TotalAmount', line)
-                 igst_amt_s = re.search(r'TotalAmount', line)
-                 invoice_num_s = re.search(r'Challan', line)
-                 part_qty_s=re.search(r'Total', line)
-                 rate_per_qty_s=re.search(r'Total', line)
-                 net_rate_s=re.search(r'Total', line)
-                 tax_category_s=re.search(r'TotalAmount', line)
-                 word_list = line.split()
-                 temp_cat = word_list[word_list.index("TotalAmount") - 8]
-                 offset = 0
-
-                 if 'gst' not in temp_cat.lower():
-                     offset = 1
+                 try:
+                    po_s = re.search(r'Terms (\S+)', line)
+                    gst_s = re.search(r'MaharashtraDate (\S+)', line)
+                    invoice_date_s = re.search(r'MaharashtraDate (\S+)', line)
+                    vendor_code_s = re.search(r':Reg.Type (\S+)', line)
+                    part_no_s = re.search(r':Reg.Type (\S+)', line)
+                    HSN_s = re.search(r'Total(\S+)', line)
+                    invoice_value_s = re.search(r'TotalAmount (\S+)', line)
+                    igst_s=re.search(r'TotalAmount', line)
+                    igst_amt_s = re.search(r'TotalAmount', line)
+                    invoice_num_s = re.search(r'Challan', line)
+                    part_qty_s=re.search(r'Total', line)
+                    rate_per_qty_s=re.search(r'Total', line)
+                    net_rate_s=re.search(r'Total', line)
+                    tax_category_s=re.search(r'TotalAmount', line)
+                    word_list = line.split()
+                    temp_cat = word_list[word_list.index("TotalAmount") - 8]
+                    offset = 0
+                 except:
+                     print("exception handeled")
+                 try:
+                    if 'gst' not in temp_cat.lower():
+                        offset = 1
+                 except:
+                     print("Exception handeled")
                  #print(po_s.group(0))
                  try:
                     if po_s:
@@ -181,13 +186,13 @@ class Text_Converter:
                         #code for sgst amt
                         sgst_amt_act = word_list[( word_list.index("TotalAmount") - offset ) - 8]
                         total_len=len(sgst_amt_act)-5
-                        sgst_amt=sgst_amt_act[0:total_len]
+                        sgst_amt=sgst_amt_act[0:total_len].replace(',','')
                         #print("+"*20,sgst_amt)
 
                         #code for cgst amt
                         cgst_amt_act = word_list[( word_list.index("TotalAmount") - offset ) - 14]
                         total_len = len(cgst_amt_act) - 5
-                        cgst_amt = cgst_amt_act[0:total_len]
+                        cgst_amt = cgst_amt_act[0:total_len].replace(',','')
                         #print("o" * 20, cgst_amt)
 
                         igst_rate = "0.00"

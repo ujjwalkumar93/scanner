@@ -2,7 +2,73 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b815af5f-965d-41f7-a988-b45f8f52590a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/invoicescanner/nelson_pdf_to_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/invoicescanner/pdf_to_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/invoicescanner/pdf_to_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invoicescanner/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/invoicescanner/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_12:24:34" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_12:26:58" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_12:30:10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_12:33:58" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_12:53:02" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_13:24:39" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_13:32:25" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_13:37:39" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:07:52" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:22:22" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:24:20" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:24:37" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:24:42" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:24:46" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:25:55" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:26:00" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:26:36" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:26:41" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:27:01" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:28:29" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:28:45" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:29:09" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:41:20" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_14:43:55" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_15:41:26" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_15:42:39" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_16:01:54" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_16:04:09" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_16:30:20" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_17:39:34" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_18:03:39.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_18:07:56" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_18:10:01" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_18:12:53" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_18:47:06" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_19:28:53" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_19:55:10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_19:56:46" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_19:59:07" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:08:39" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:09:51" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:10:08" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:17:23" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:29:00" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:30:12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:30:27" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:31:39" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:34:24" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:37:21" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:38:21" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:40:13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:41:26" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:41:58" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:43:11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:45:40" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:50:39" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:54:32" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_20:59:05" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/result/bhagwati_invoice_22:49:47" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/text" beforeDir="false" afterPath="$PROJECT_DIR$/media/text" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qrcode" beforeDir="false" afterPath="$PROJECT_DIR$/qrcode" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qrpdf.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/qrpdf.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scanner/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,22 +97,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/invoicescanner/templates/fields.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="81" selection-start-line="20" selection-start-column="81" selection-end-line="20" selection-end-column="81" />
+            <state relative-caret-position="59">
+              <caret line="164" selection-start-line="164" selection-end-line="164" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#a#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#1;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scanner/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="420">
+              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -54,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scanner/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="25" />
+            <state relative-caret-position="334">
+              <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
               <folding>
                 <element signature="e#631#640#0" expanded="true" />
               </folding>
@@ -66,8 +135,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/invoicescanner/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1519">
-              <caret line="158" column="88" selection-start-line="158" selection-start-column="88" selection-end-line="158" selection-end-column="88" />
+            <state relative-caret-position="328">
+              <caret line="111" column="27" selection-start-line="111" selection-start-column="27" selection-end-line="111" selection-end-column="27" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -84,11 +153,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/invoicescanner/pdf_to_text.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="134" column="79" selection-start-line="134" selection-start-column="79" selection-end-line="134" selection-end-column="79" />
+            <state relative-caret-position="1861">
+              <caret line="299" column="37" lean-forward="true" selection-start-line="299" selection-start-column="37" selection-end-line="299" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/invoicescanner/nelson_pdf_to_text.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-36">
+              <caret line="223" column="21" selection-start-line="223" selection-start-column="17" selection-end-line="223" selection-end-column="21" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -117,10 +198,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>vendor_c</find>
-      <find>gst_n</find>
-      <find>gst_no</find>
-      <find>svg</find>
       <find>&lt;body&gt;</find>
       <find>po_no</find>
       <find>po_num</find>
@@ -132,7 +209,6 @@
       <find>slugify</find>
       <find>brows</find>
       <find>here</find>
-      <find>obj</find>
       <find>yes got the tax category</find>
       <find>invoice_amt</find>
       <find>margin</find>
@@ -147,6 +223,11 @@
       <find>base</find>
       <find>cess</find>
       <find>invoice_va</find>
+      <find>left</find>
+      <find>obj</find>
+      <find>Gross ra</find>
+      <find>part_no_s</find>
+      <find>shif</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,11 +251,12 @@
         <option value="$PROJECT_DIR$/invoicescanner/templates/pdffile.html" />
         <option value="$PROJECT_DIR$/invoicescanner/test.py" />
         <option value="$PROJECT_DIR$/scanner/urls.py" />
-        <option value="$PROJECT_DIR$/invoicescanner/views.py" />
         <option value="$PROJECT_DIR$/invoicescanner/templates/index.html" />
-        <option value="$PROJECT_DIR$/invoicescanner/templates/fields.html" />
-        <option value="$PROJECT_DIR$/invoicescanner/pdf_to_text.py" />
         <option value="$PROJECT_DIR$/scanner/settings.py" />
+        <option value="$PROJECT_DIR$/invoicescanner/templates/fields.html" />
+        <option value="$PROJECT_DIR$/invoicescanner/nelson_pdf_to_text.py" />
+        <option value="$PROJECT_DIR$/invoicescanner/views.py" />
+        <option value="$PROJECT_DIR$/invoicescanner/pdf_to_text.py" />
       </list>
     </option>
   </component>
@@ -243,8 +325,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
-    <configuration name="dataerp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.nelson_pdf_to_text">
+    <configuration name="nelson_pdf_to_text" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="scanner" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -256,7 +338,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/invoicescanner/dataerp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/invoicescanner/nelson_pdf_to_text.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -351,11 +433,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.nelson_pdf_to_text" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.test2" />
         <item itemvalue="Python.pdf_to_text" />
         <item itemvalue="Python.pdfminer" />
-        <item itemvalue="Python.dataerp" />
       </list>
     </recent_temporary>
   </component>
@@ -376,18 +458,18 @@
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49027237" visible="true" weight="0.2539185" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49027237" weight="0.2539185" />
       <window_info id="Structure" order="1" sideWeight="0.509772" side_tool="true" weight="0.2539185" />
       <window_info id="Favorites" order="2" sideWeight="0.5097276" side_tool="true" weight="0.2539185" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32899022" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.732899" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26058632" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4992163" visible="true" weight="0.52931595" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4992163" visible="true" weight="0.048859935" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007837" side_tool="true" weight="0.32899022" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32899022" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -434,13 +516,6 @@
     <entry file="file://$PROJECT_DIR$/invoicescanner/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/invoicescanner/templates/pdf_view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/invoicescanner/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
@@ -451,34 +526,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/invoicescanner/views.py">
+    <entry file="file://$PROJECT_DIR$/scanner/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1519">
-          <caret line="158" column="88" selection-start-line="158" selection-start-column="88" selection-end-line="158" selection-end-column="88" />
+        <state relative-caret-position="420">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/invoicescanner/templates/pdf_view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scanner/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#631#640#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/invoicescanner/templates/fields.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="81" selection-start-line="20" selection-start-column="81" selection-end-line="20" selection-end-column="81" />
+        <state relative-caret-position="59">
+          <caret line="164" selection-start-line="164" selection-end-line="164" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/invoicescanner/pdf_to_text.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="134" column="79" selection-start-line="134" selection-start-column="79" selection-end-line="134" selection-end-column="79" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#a#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -490,20 +572,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scanner/urls.py">
+    <entry file="file://$PROJECT_DIR$/invoicescanner/nelson_pdf_to_text.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="25" />
+        <state relative-caret-position="-36">
+          <caret line="223" column="21" selection-start-line="223" selection-start-column="17" selection-end-line="223" selection-end-column="21" />
           <folding>
-            <element signature="e#631#640#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scanner/settings.py">
+    <entry file="file://$PROJECT_DIR$/invoicescanner/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="328">
+          <caret line="111" column="27" selection-start-line="111" selection-start-column="27" selection-end-line="111" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/invoicescanner/pdf_to_text.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1861">
+          <caret line="299" column="37" lean-forward="true" selection-start-line="299" selection-start-column="37" selection-end-line="299" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

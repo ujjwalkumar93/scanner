@@ -99,12 +99,13 @@ def qr_generator(request):
         if i=="":
             datalist[n] ="0.00"
     data=",".join(datalist)
+    print("data for qr code is: ",data)
     qr=pyqrcode.create(data)
     qr.svg("qrcode", scale=1.1)
     #writing code to get location on QRCode
     qrcode_path=os.path.join(os.getcwd(),'qrcode')
     drawing = svg2rlg(qrcode_path)
-    scaleFactor = 1
+    scaleFactor = .8
     drawing.width *= scaleFactor
     drawing.height *= scaleFactor
     drawing.scale(scaleFactor, scaleFactor)
