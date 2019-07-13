@@ -4,7 +4,7 @@ from django.shortcuts import render
 import pyqrcode
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
-from invoicescanner.pdf_to_text import *
+from invoicescanner.nelson_pdf_to_text import *
 from django.template import loader
 import os
 from django.core.files.storage import FileSystemStorage
@@ -105,11 +105,11 @@ def qr_generator(request):
     #writing code to get location on QRCode
     qrcode_path=os.path.join(os.getcwd(),'qrcode')
     drawing = svg2rlg(qrcode_path)
-    scaleFactor = .8
+    scaleFactor = 1
     drawing.width *= scaleFactor
     drawing.height *= scaleFactor
     drawing.scale(scaleFactor, scaleFactor)
-    drawing.shift(200, -605)
+    drawing.shift(410, -655)
     #creating qrcode on blank pdf so later we can merge as watermark on origional pdf
     renderPDF.drawToFile(drawing, "qrpdf.pdf", autoSize=0)
     blank_pdf_qr=os.path.join(os.getcwd(),'qrpdf.pdf')
