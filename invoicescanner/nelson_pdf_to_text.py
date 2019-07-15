@@ -43,7 +43,7 @@ class Text_Converter:
                  part_no_s = re.search(r'MEASUREQTYRATE (\S+)', line)
                  HSN_s = re.search(r'VALUE (\S+)', line)
                  invoice_value_s = re.search(r'REMOVAL`TOTAL (\S+)', line)
-                 invoice_num_s = re.search(r'Page (\s+)', line)
+                 invoice_num_s = re.search(r'Page (\S+)', line)
                  sgst_amt_s=re.search(r'PACKING', line)
                  try:
                     if po_s:
