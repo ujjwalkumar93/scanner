@@ -29,6 +29,7 @@ def upload(request):
         file_path = os.path.join(os.getcwd(),'media',name)
         obj=Text_Converter(file_path)
         obj.convert_pdf_to_text()
+        #obj.pdf_to_string()
         obj.fields_data()
         obj.convert_pdf_to_text()
         if uploaded_file.name!="doccument":
