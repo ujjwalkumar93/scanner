@@ -5,6 +5,7 @@ import pyqrcode
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 from invoicescanner.nelson_pdf_to_text import *
+from invoicescanner.pdf_to_text import *
 from django.template import loader
 import os
 from django.core.files.storage import FileSystemStorage
@@ -27,11 +28,22 @@ def upload(request):
         context['url'] = fs.url(name)
         global file_path
         file_path = os.path.join(os.getcwd(),'media',name)
-        obj=Text_Converter(file_path)
+        """obj=Text_Converter(file_path)
         obj.convert_pdf_to_text()
         #obj.pdf_to_string()
         obj.fields_data()
-        obj.convert_pdf_to_text()
+        obj.convert_pdf_to_text()"""
+        file_location = os.path.join(os.getcwd(), 'media', 'text')
+        if 'Nelson' in open(file_location).read():
+            obj=Text_Converter_nel(file_path)
+            obj.convert_pdf_to_text_nel()
+            obj.fields_data_nel()
+            # print("nelson found"*20)
+        else:
+            obj=Text_Converter(file_path)
+            obj.convert_pdf_to_text()
+            obj.fields_data()
+            # print("bagwati found"*20)
         if uploaded_file.name!="doccument":
              return HttpResponseRedirect('fields')
     return render(request,'index.html')
@@ -40,8 +52,25 @@ def upload(request):
 def fields(request):
     template = loader.get_template('fields.html')
     #creating object of pdf_to_text.py file so we can get json data returned by field_data from Text_converter class
-    obj=Text_Converter(file_path)
-    data=obj.fields_data()
+    data=" "
+    file_location = os.path.join(os.getcwd(), 'media', 'text')
+    if 'Nelson' in open(file_location).read():
+        obj = Text_Converter_nel(file_path)
+        #obj.convert_pdf_to_text_nel()
+        data=obj.fields_data_nel()
+        print("nelson found " * 20)
+        return data
+    else:
+        obj = Text_Converter(file_path)
+        #obj.convert_pdf_to_text()
+        data=obj.fields_data()
+        print("bagwati found " * 20)
+        print(data)
+        return data
+    # obj=Text_Converter(file_path)
+    # data=obj.fields_data()
+    data=filter()
+    print("#"*20,data)
     json_data=json.loads(data)
     rendata={
         'Po_No':json_data["po_no"],
@@ -159,10 +188,3 @@ def qr_generator(request):
             return response
     else:
         return HttpResponseNotFound('The requested pdf was not found in our server.')"""
-
-
-
-
-
-
-

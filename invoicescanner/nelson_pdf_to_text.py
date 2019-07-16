@@ -5,13 +5,13 @@ import re
 from tabula import read_pdf
 import pandas
 import json
-class Text_Converter:
+class Text_Converter_nel:
 
     def __init__(self,file_url):
         self.file_url=file_url
         #print("file url is: ",self.file_url)
 
-    def convert_pdf_to_text(self):
+    def convert_pdf_to_text_nel(self):
         file_path=self.file_url
         file_obj=open(file_path,'rb')
         pdf_reader=PyPDF2.PdfFileReader(file_obj)
@@ -29,10 +29,10 @@ class Text_Converter:
         df.to_csv(tabula_text_file,sep='\t')
         #print(df)
 
-    def get_file_path(self):
+    def get_file_path_nel(self):
         return self.file_url
 
-    def fields_data(self):
+    def fields_data_nel(self):
          file_location=os.path.join(os.getcwd(),'media','text')
          with open(file_location,'r+') as fl:
              i=0
@@ -166,7 +166,7 @@ class Text_Converter:
                          sgst_amt = word_list[word_list.index('Ea') + 7]
 
                          d=[net_rate,cgst_rate,cgst_amt,sgst_amt,sgst_rate,po_no,gst_no,invoice_date,part_no,HSN_no,invoice_amts]
-                         print(d)
+                         print("all data is: ",d)
 
                  except:
                      print("Gross rate not found")
@@ -195,7 +195,7 @@ class Text_Converter:
             print(json_obj)
          except Exception as e:
              print("exception handeled: ",e)
-             """json_obj = {
+             json_obj = {
                  'po_no': "NAA",
                  'gst_no': "NAA",
                  'invoice_date': "NA",
@@ -213,18 +213,8 @@ class Text_Converter:
                  'cgst_rate': "NA",
                  'sgst_amt': "NA",
                  'cgst_amt': "NA"
-             }"""
+             }
              #print(json_obj)
          data=json.dumps(json_obj)
          #print("data is: ",data)
          return data
-
-
-
-
-
-
-
-
-
-

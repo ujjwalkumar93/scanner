@@ -15,6 +15,7 @@
         <list>
           <option value="invoicescanner.pdf_to_text.file_object" />
           <option value="invoicescanner.pdf_to_text.self" />
+          <option value="invoicescanner.views.os" />
         </list>
       </option>
     </inspection_tool>
