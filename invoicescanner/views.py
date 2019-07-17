@@ -59,17 +59,18 @@ def fields(request):
         #obj.convert_pdf_to_text_nel()
         data=obj.fields_data_nel()
         print("nelson found " * 20)
-        return data
+        # return HttpResponse(template.render(data))
     else:
         obj = Text_Converter(file_path)
         #obj.convert_pdf_to_text()
         data=obj.fields_data()
         print("bagwati found " * 20)
         print(data)
-        return data
+        # return HttpResponse(template.render(data))
     # obj=Text_Converter(file_path)
     # data=obj.fields_data()
-    data=filter()
+
+    # data=filter()
     print("#"*20,data)
     json_data=json.loads(data)
     rendata={
@@ -178,7 +179,6 @@ def qr_generator(request):
 
 # code for downloading result pdf file
 """def pdf_view(request):
-    import pdb;pdb.set_trace()
     fs = FileSystemStorage()
     filename = 'bhagwati_invoice.pdf'
     if fs.exists(filename):
