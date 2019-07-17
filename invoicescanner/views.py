@@ -147,7 +147,7 @@ def qr_generator(request):
     print("data for qr code is: ",data)
 
     file_location = os.path.join(os.getcwd(), 'media', 'text')
-    import pdb;pdb.set_trace()
+
     base_name = uploaded_file.name.strip('.pdf') + '_' if uploaded_file and uploaded_file.name else ''
     if 'Nelson' in open(file_location).read():
         qr = pyqrcode.create(data)
