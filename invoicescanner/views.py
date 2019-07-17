@@ -147,6 +147,8 @@ def qr_generator(request):
     print("data for qr code is: ",data)
 
     file_location = os.path.join(os.getcwd(), 'media', 'text')
+    import pdb;pdb.set_trace()
+    base_name = uploaded_file.name.strip('.pdf') + '_' if uploaded_file and uploaded_file.name else ''
     if 'Nelson' in open(file_location).read():
         qr = pyqrcode.create(data)
         qr.svg("qrcode", scale=1.1)
@@ -171,12 +173,15 @@ def qr_generator(request):
             pageObj = pdfReader.getPage(pageNum)
             pageObj.mergePage(pdfWatermarkReader.getPage(0))
             pdfWriter.addPage(pageObj)
-            base_name = "Nelson_invoice_"
-            now = datetime.now()
-            time = now.strftime("%H:%M:%S")
-            now_time = "".join(time)
-            res_file_name = base_name + now_time
-            base_name = os.path.join(os.getcwd(), 'media', 'result', res_file_name)
+
+        base_name = "Nelson_invoice_" if not base_name else base_name
+        now = datetime.now()
+        time = now.strftime("%H:%M:%S")
+        now_time = "".join(time)
+        res_file_name = base_name + now_time
+        res_file_name = res_file_name.replace('/[^A-Z0-9]+/ig', "_")
+
+        base_name = os.path.join(os.getcwd(), 'media', 'result', res_file_name)
         resultPdfFile = open(base_name, 'wb')
         pdfWriter.write(resultPdfFile)
         watermarkFile.close()
@@ -209,12 +214,15 @@ def qr_generator(request):
             pageObj = pdfReader.getPage(pageNum)
             pageObj.mergePage(pdfWatermarkReader.getPage(0))
             pdfWriter.addPage(pageObj)
-            base_name = "bhagwati_invoice_"
-            now = datetime.now()
-            time = now.strftime("%H:%M:%S")
-            now_time = "".join(time)
-            res_file_name = base_name + now_time
-            base_name = os.path.join(os.getcwd(), 'media', 'result', res_file_name)
+
+        base_name = "bhagwati_invoice_" if not base_name else base_name
+        now = datetime.now()
+        time = now.strftime("%H:%M:%S")
+        now_time = "".join(time)
+        res_file_name = base_name + now_time
+        res_file_name = res_file_name.replace('/[^A-Z0-9]+/ig', "_")
+        base_name = os.path.join(os.getcwd(), 'media', 'result', res_file_name)
+
         resultPdfFile = open(base_name, 'wb')
         pdfWriter.write(resultPdfFile)
         watermarkFile.close()
