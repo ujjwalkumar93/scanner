@@ -250,7 +250,7 @@ class Text_Converter:
                         word_list=line.split()
                         part_qty_trimmed = word_list[word_list.index("Total") -3][0:3]
                         max_index=part_qty_trimmed.find('.')
-                        part_qty=part_qty_trimmed[0:max_index]
+                        part_qty=part_qty_trimmed[0:max_index] + '.000'
                         #print("part No: "*
                         #print('::'*20,part_qty)
 
