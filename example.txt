@@ -1,0 +1,48 @@
+	Unnamed: 0	Unnamed: 1	GST Tax Invoice
+0		(U/s 31 of CGST Act & SGST Act R.W. Sec. 20 of IGST Act)	
+1	ORIGINAL FOR RECIPIENT		
+2		BHAGWATI ENTERPRISES	
+3		Industrial Pneumatic / Cordless / Elect. Assembly Tools, Sockets, Bits & Wire Brushes	
+4		""" Saptashrungi Plaza"", Opp. Runwal Classic, Tapkir Nagar, Kalewadi, Pimpri, Pune - 411 017"	
+5		Ph. No. (020) 65290609 Cell: 09225514640 Email: bhagwatient_2010@yahoo.com Website:	
+6		www.bhagwatitools.com	
+7	GSTIN : 27ACKPT7097C1Z3	W.E.F. State Code : 27 Maharashtra	PAN No. ACKPT7097C
+8		01-Jul-2019	
+9	Invoice No. BE1118	Date : Challan No. :	Date :
+10	P.O. No. : 2410246580	Date : 0 Days  Due On : 01/07/2019 01-Jul-2019Pay. Terms :	
+11	Delivery :	Kind Attn :	
+12	Buyer : TATA Motors Ltd (Pimpri)	Consignee : TATA Motors Ltd (Pimpri)	
+13	Plant No. 1059, Pimpri, Pune 411018	Plant No. 1059, Pimpri, Pune 411018	
+14	Maharashtra	Maharashtra	
+15	GST. No. : 27AAACT2727Q1ZW	PAN No. : AAACT2727Q GST. No. : 27AAACT2727Q1ZW PAN No. :	AAACT2727Q
+16	Reg.Type : Registered	Reg.Type : Registered	
+17	State Code : 27 Maharashtra	SC-GST (Local) State Code : 27 Maharashtra	SC-GST (Local)
+18	Vendor Code : B64030		
+19	PO		
+20	Sn.	Description HSN/SAC Tax% Quantity Units	Rate Dis% Amount
+21	Sn.		
+22	1 PART NO: 35000045983	73181500  18.00  30.00 Nos	109.80 1.65  3,239.65
+23	Screw 243F-028 For TW 243F maxwrench		
+24	ITEM NO: 50		
+25			
+26	ASN NO: 9078150904		
+27			3,239.65
+28			Sub Total
+29		C-Gst 9% On Amt : 3239.65	291.57
+30		S-Gst 9% On Amt : 3239.65	291.57
+31			Rounding (+/-)  0.21
+32	Amount In Words : Rupees  Three Thousand Eight Hundred Twenty Three Only.		
+33			3,823.00Grand Total
+34	I / we certify that our registration certficate under the GST Act, 2017 is in force on the date on which the supply of goods specified in this Tax Invoice is made by me/us & the		
+35	transaction of supply covered by this Tax Invoice had been effected by me/us & it shall be accounted for in the turnover of supplies while filling of return & the due tax if any payable on		
+36	the supplies has been paid or shall be paid.Further certified that the particulars given above are true and correct & the amount indicated represents the prices actually charged and that		
+37	there is no flow additional consideration directly or indirectly from the buyer. Interest @ 18% p.a. charged on all outstanding more than one month after invoice has been rendered		
+38	Issued On : 01/07/20193:40:59PM		
+39	Our Bank Details:		
+40	NAME: BANK OF INDIA |  BRANCH: PIMPRI, PUNE  |  A/C NO.: 050720100009633|  IFSC: BKID0000507		
+41	TERMS & CONDITIONS :		
+42		For BHAGWATI ENTERPRISES	
+43	Subject to Pune Jurisdiction Only		
+44	Payment to be made by A/c. Payee Cheque or Electronic Transfer		
+45	Only.		
+46	Interest @18% will be charged on bill not paid within due date.		
