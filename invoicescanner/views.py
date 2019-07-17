@@ -131,40 +131,84 @@ def qr_generator(request):
             datalist[n] ="0.00"
     data=",".join(datalist)
     print("data for qr code is: ",data)
-    qr=pyqrcode.create(data)
-    qr.svg("qrcode", scale=1.1)
-    #writing code to get location on QRCode
-    qrcode_path=os.path.join(os.getcwd(),'qrcode')
-    drawing = svg2rlg(qrcode_path)
-    scaleFactor = 1
-    drawing.width *= scaleFactor
-    drawing.height *= scaleFactor
-    drawing.scale(scaleFactor, scaleFactor)
-    drawing.shift(410, -655)
-    #creating qrcode on blank pdf so later we can merge as watermark on origional pdf
-    renderPDF.drawToFile(drawing, "qrpdf.pdf", autoSize=0)
-    blank_pdf_qr=os.path.join(os.getcwd(),'qrpdf.pdf')
-    watermarkFile = open(blank_pdf_qr, 'rb')
-    pdfWatermarkReader = PyPDF2.PdfFileReader(watermarkFile)
-    minutesFile = open(file_path, 'rb')
-    pdfReader = PyPDF2.PdfFileReader(minutesFile)
 
-    pdfWriter = PyPDF2.PdfFileWriter()
-    for pageNum in range(pdfReader.numPages):
-        pageObj = pdfReader.getPage(pageNum)
-        pageObj.mergePage(pdfWatermarkReader.getPage(0))
-        pdfWriter.addPage(pageObj)
-        base_name="bhagwati_invoice_"
-        now = datetime.now()
-        time = now.strftime("%H:%M:%S")
-        now_time = "".join(time)
-        res_file_name=base_name+now_time
-        base_name=os.path.join(os.getcwd(),'media','result',res_file_name)
-    resultPdfFile = open(base_name, 'wb')
-    pdfWriter.write(resultPdfFile)
-    watermarkFile.close()
-    minutesFile.close()
-    resultPdfFile.close()
+    file_location = os.path.join(os.getcwd(), 'media', 'text')
+    if 'Nelson' in open(file_location).read():
+        qr = pyqrcode.create(data)
+        qr.svg("qrcode", scale=1.1)
+        # writing code to get location on QRCode
+        qrcode_path = os.path.join(os.getcwd(), 'qrcode')
+        drawing = svg2rlg(qrcode_path)
+        scaleFactor = 1
+        drawing.width *= scaleFactor
+        drawing.height *= scaleFactor
+        drawing.scale(scaleFactor, scaleFactor)
+        drawing.shift(410, -655)
+        # creating qrcode on blank pdf so later we can merge as watermark on origional pdf
+        renderPDF.drawToFile(drawing, "qrpdf.pdf", autoSize=0)
+        blank_pdf_qr = os.path.join(os.getcwd(), 'qrpdf.pdf')
+        watermarkFile = open(blank_pdf_qr, 'rb')
+        pdfWatermarkReader = PyPDF2.PdfFileReader(watermarkFile)
+        minutesFile = open(file_path, 'rb')
+        pdfReader = PyPDF2.PdfFileReader(minutesFile)
+
+        pdfWriter = PyPDF2.PdfFileWriter()
+        for pageNum in range(pdfReader.numPages):
+            pageObj = pdfReader.getPage(pageNum)
+            pageObj.mergePage(pdfWatermarkReader.getPage(0))
+            pdfWriter.addPage(pageObj)
+            base_name = "Nelson_invoice_"
+            now = datetime.now()
+            time = now.strftime("%H:%M:%S")
+            now_time = "".join(time)
+            res_file_name = base_name + now_time
+            base_name = os.path.join(os.getcwd(), 'media', 'result', res_file_name)
+        resultPdfFile = open(base_name, 'wb')
+        pdfWriter.write(resultPdfFile)
+        watermarkFile.close()
+        minutesFile.close()
+        resultPdfFile.close()
+
+
+
+    else:
+        qr = pyqrcode.create(data)
+        qr.svg("qrcode", scale=1.1)
+        # writing code to get location on QRCode
+        qrcode_path = os.path.join(os.getcwd(), 'qrcode')
+        drawing = svg2rlg(qrcode_path)
+        scaleFactor = 1
+        drawing.width *= scaleFactor
+        drawing.height *= scaleFactor
+        drawing.scale(scaleFactor, scaleFactor)
+        drawing.shift(200, -605)
+        # creating qrcode on blank pdf so later we can merge as watermark on origional pdf
+        renderPDF.drawToFile(drawing, "qrpdf.pdf", autoSize=0)
+        blank_pdf_qr = os.path.join(os.getcwd(), 'qrpdf.pdf')
+        watermarkFile = open(blank_pdf_qr, 'rb')
+        pdfWatermarkReader = PyPDF2.PdfFileReader(watermarkFile)
+        minutesFile = open(file_path, 'rb')
+        pdfReader = PyPDF2.PdfFileReader(minutesFile)
+
+        pdfWriter = PyPDF2.PdfFileWriter()
+        for pageNum in range(pdfReader.numPages):
+            pageObj = pdfReader.getPage(pageNum)
+            pageObj.mergePage(pdfWatermarkReader.getPage(0))
+            pdfWriter.addPage(pageObj)
+            base_name = "bhagwati_invoice_"
+            now = datetime.now()
+            time = now.strftime("%H:%M:%S")
+            now_time = "".join(time)
+            res_file_name = base_name + now_time
+            base_name = os.path.join(os.getcwd(), 'media', 'result', res_file_name)
+        resultPdfFile = open(base_name, 'wb')
+        pdfWriter.write(resultPdfFile)
+        watermarkFile.close()
+        minutesFile.close()
+        resultPdfFile.close()
+
+
+
     template=loader.get_template("fields.html")
     link = 'http://{}/{}'.format(request.get_host(), base_name)
     data={
