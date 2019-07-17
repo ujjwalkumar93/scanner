@@ -28,20 +28,33 @@ def upload(request):
         context['url'] = fs.url(name)
         global file_path
         file_path = os.path.join(os.getcwd(),'media',name)
-        """obj=Text_Converter(file_path)
-        obj.convert_pdf_to_text()
-        #obj.pdf_to_string()
-        obj.fields_data()
-        obj.convert_pdf_to_text()"""
+
+        file_obj = open(file_path, 'rb')
+        pdf_reader = PyPDF2.PdfFileReader(file_obj)
+        total_pages = pdf_reader.numPages
+        # print("Total number of pages: ",total_pages)
+        page_obj = pdf_reader.getPage(0)
+        content = page_obj.extractText()
+        # print(content)
+        file_location = os.path.join(os.getcwd(), 'media', 'text')
+        text_file = open(file_location, 'w')
+        write_content = text_file.write(content)
+
+        tabula_text_file_location = os.path.join(os.getcwd(), 'media', 'tabula_text')
+        tabula_text_file = open(tabula_text_file_location, 'w+')
+        df = read_pdf(file_path, pages="1")
+        # tabula_text_file.truncate(0)
+        df.to_csv(tabula_text_file, sep='\t')
+
         file_location = os.path.join(os.getcwd(), 'media', 'text')
         if 'Nelson' in open(file_location).read():
             obj=Text_Converter_nel(file_path)
-            obj.convert_pdf_to_text_nel()
+            #obj.convert_pdf_to_text_nel()
             obj.fields_data_nel()
             # print("nelson found"*20)
         else:
             obj=Text_Converter(file_path)
-            obj.convert_pdf_to_text()
+            #obj.convert_pdf_to_text()
             obj.fields_data()
             # print("bagwati found"*20)
         if uploaded_file.name!="doccument":
@@ -56,13 +69,13 @@ def fields(request):
     file_location = os.path.join(os.getcwd(), 'media', 'text')
     if 'Nelson' in open(file_location).read():
         obj = Text_Converter_nel(file_path)
-        #obj.convert_pdf_to_text_nel()
+
         data=obj.fields_data_nel()
         print("nelson found " * 20)
         # return HttpResponse(template.render(data))
     else:
         obj = Text_Converter(file_path)
-        #obj.convert_pdf_to_text()
+
         data=obj.fields_data()
         print("bagwati found " * 20)
         print(data)
@@ -84,7 +97,7 @@ def fields(request):
         'igst_rate':json_data['igst_rate'],
         'total_inv_val': json_data['invoice_val'],
         'hsn_no':json_data['hsn_no'],
-        'ord_item_no': "10",
+        'ord_item_no': json_data['po_order_item_no'],
         'part_qty': json_data['part_qty'],
         'gross_rate': json_data['gross_rate'],
         'net_rate':json_data['net_rate'],
@@ -105,7 +118,7 @@ def qr_generator(request):
 
     po_no=request.POST.get('po', None)
     item_no=request.POST.get('item_no',None)
-    part_qty=request.POST.get('part_qty',None)
+    part_qty_s=request.POST.get('part_qty',None)
     gross_rate=request.POST.get('gross_rate',None)
     net_rate = request.POST.get('net_rate', None)
     cgst_value = request.POST.get('cgst_value', None)
@@ -124,6 +137,7 @@ def qr_generator(request):
     invoice_value = request.POST.get('invoice_value', None)
     HSN_code = request.POST.get('HSN_code', None)
     #print("data from qr: ",po_no)
+    part_qty=part_qty_s+".000"
     datalist = [po_no, item_no,part_qty,inv_no,inv_date,gross_rate,net_rate,vendor_code,part_no,cgst_value,sgst_value,igst_value,ugst_value,cgst_rate,sgst_rate,igst_rate,ugst_rate,cess,invoice_value,HSN_code]
     # adding 0.00 as default value for blank fields
     for n, i in enumerate(datalist):

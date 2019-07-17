@@ -11,26 +11,17 @@ class Text_Converter_nel:
         self.file_url=file_url
         #print("file url is: ",self.file_url)
 
-    def convert_pdf_to_text_nel(self):
+    """def convert_pdf_to_text_nel(self):
         file_path=self.file_url
-        file_obj=open(file_path,'rb')
-        pdf_reader=PyPDF2.PdfFileReader(file_obj)
-        #total_pages=pdf_reader.numPages
-        file_location = os.path.join(os.getcwd(), 'media', 'text')
-        text_file = open(file_location, 'a')
-        text_file.truncate(0)
-        page_obj = pdf_reader.getPage(0)
-        content = page_obj.extractText()
-        write_content = text_file.write(content)
         tabula_text_file_location =os.path.join(os.getcwd(), 'media', 'tabula_text')
         tabula_text_file=open(tabula_text_file_location,'w+')
         df = read_pdf(file_path, pages="1")
-        tabula_text_file.truncate(0)
+        #tabula_text_file.truncate(0)
         df.to_csv(tabula_text_file,sep='\t')
         #print(df)
 
     def get_file_path_nel(self):
-        return self.file_url
+        return self.file_url"""
 
     def fields_data_nel(self):
          file_location=os.path.join(os.getcwd(),'media','text')
@@ -52,10 +43,10 @@ class Text_Converter_nel:
                         po_no_s=word_list[word_list.index("PURCHASE")+4]
                         po_len=len(po_no_s)-4
                         po_no=po_no_s[0:po_len]
-                        #print("Po number is: "*20,po_no)
-                    else:
-                        print("Not found"*30)
+                        print("Po number is: "*20,po_no)
+
                  except:
+                    po_no="NA"
                     print("Po Number Not Found")
 
                  try:
@@ -66,6 +57,7 @@ class Text_Converter_nel:
                         #print("Gst is: "*20,gst_no)
                         #print(word_list)
                  except:
+                     gst_no="NA"
                      print("GST Number not found")
 
                  try:
@@ -92,6 +84,7 @@ class Text_Converter_nel:
                         out = m[s]
                         invoice_date=invoice_date_rep.replace(newdate,out)
                  except:
+                     invoice_date="NA"
                      print("Exception handeled")
 
                  try:
@@ -102,10 +95,9 @@ class Text_Converter_nel:
                         init_index=second_half.find('(')+1
                         last_index=second_half.find(')')
                         part_no=second_half[init_index:last_index]
-                        #print("part no: : "*20, part_no)
-                    else:
-                        print("Not found "*20)
+
                  except:
+                     part_no = "NA"
                      print("part number not found")
 
                  try:
@@ -113,6 +105,7 @@ class Text_Converter_nel:
                         word_list = line.split()
                         HSN_no = word_list[word_list.index("VALUE") +1][54:62]
                  except:
+                     HSN_no="NA"
                      print("HSN Number not found")
 
                  try:
@@ -124,6 +117,7 @@ class Text_Converter_nel:
                         invoice_amts=total_amt[11:last_index]
                         #print("TotalAmount "*30, invoice_amts)
                  except:
+                     invoice_amts="NA"
                      print("Invoice value not found")
 
                  try:
@@ -134,9 +128,9 @@ class Text_Converter_nel:
                         length_invoice=len(invoice_num_with_len)-7
                         invoice_num=invoice_num_with_len[0:length_invoice]
                         print("Invoice number: "*23, invoice_num)
-                    else:
-                        print("No")
+
                  except:
+                     invoice_num="NA"
                      print("Invoice number not found")
          #code for getting complex data
          file_location = os.path.join(os.getcwd(), 'media', 'tabula_text')
@@ -169,6 +163,8 @@ class Text_Converter_nel:
                          print("all data is: ",d)
 
                  except:
+                     net_rate, cgst_rate, cgst_amt, sgst_amt, sgst_rate, po_no, gst_no, invoice_date, part_no, HSN_no, invoice_amts="NA"
+
                      print("Gross rate not found")
 
 
@@ -190,7 +186,9 @@ class Text_Converter_nel:
              'sgst_rate':sgst_rate,
              'cgst_rate':cgst_rate,
              'sgst_amt': sgst_amt,
-             'cgst_amt': cgst_amt
+             'cgst_amt': cgst_amt,
+                'po_order_item_no':10
+
             }
             print(json_obj)
          except Exception as e:
@@ -212,7 +210,8 @@ class Text_Converter_nel:
                  'sgst_rate': "NA",
                  'cgst_rate': "NA",
                  'sgst_amt': "NA",
-                 'cgst_amt': "NA"
+                 'cgst_amt': "NA",
+                 'po_order_item_no':10
              }
              #print(json_obj)
          data=json.dumps(json_obj)

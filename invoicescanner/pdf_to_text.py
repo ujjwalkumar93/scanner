@@ -3,14 +3,13 @@ import os
 import PyPDF2
 import re
 import json
-
 class Text_Converter:
 
     def __init__(self,file_url):
         self.file_url=file_url
         #print("file url is: ",self.file_url)
 
-    def convert_pdf_to_text(self):
+    """def convert_pdf_to_text(self):
         file_path=self.file_url
         file_obj=open(file_path,'rb')
         pdf_reader=PyPDF2.PdfFileReader(file_obj)
@@ -27,7 +26,7 @@ class Text_Converter:
 
     def get_file_path(self):
 
-        return self.file_url
+        return self.file_url"""
     def fields_data(self):
 
          file_location=os.path.join(os.getcwd(),'media','text')
@@ -49,6 +48,7 @@ class Text_Converter:
                     rate_per_qty_s=re.search(r'Total', line)
                     net_rate_s=re.search(r'Total', line)
                     tax_category_s=re.search(r'TotalAmount', line)
+                    po_order_item_no_s = re.search(r'NO: (\S+)', line)
                     word_list = line.split()
                     temp_cat = word_list[word_list.index("TotalAmount") - 8]
                     offset = 0
@@ -69,6 +69,7 @@ class Text_Converter:
                         #return po_num
                         #print("Po number is: ",po_num)
                  except:
+                    po_num="NA"
                     print("Po Number Not Found")
                  try:
                     if gst_s:
@@ -77,6 +78,7 @@ class Text_Converter:
                         gst_no=word_list[word_list.index("MaharashtraDate")-6][21:36]
                         #print("Gst is: "*20,gst_no)
                  except:
+                     gst_no="NA"
                      print("GST Number not found")
                  try:
                     if invoice_date_s:
@@ -108,6 +110,7 @@ class Text_Converter:
 
                         #print("m"*10,out)
                  except:
+                     invoice_date="NA"
                      print("Exception handeled")
 
                  try:
@@ -116,6 +119,7 @@ class Text_Converter:
                         vendor_code = word_list[word_list.index(":Reg.Type") + 4][0:6]
                         #print("vendor code: ", vendor_code)
                  except:
+                     vendor_code="NA"
                      print("vendor code not found")
                  try:
                     if part_no_s:
@@ -123,6 +127,7 @@ class Text_Converter:
                         part_no = word_list[word_list.index(":Reg.Type") + 7][0:11]
                         # print("part no: : ", part_no)
                  except:
+                     part_no="NA"
                      print("part number not found")
                  try:
                     if HSN_s:
@@ -133,6 +138,7 @@ class Text_Converter:
                         HSN_no=HSN_no_len[init_len:length_hsn]
                         #print("HSN NO : ", HSN_no)
                  except:
+                     HSN_no="NA"
                      print("HSN Number not found")
                  try:
                     if invoice_value_s:
@@ -142,9 +148,8 @@ class Text_Converter:
                         total_alpha=str_len-5
                         invoice_amts=total_amt[0:total_alpha]
                         invoice_amt=invoice_amts.replace(",","")
-
-                        #print("TotalAmount ", invoice_amt)
                  except:
+                     invoice_amt="NA"
                      print("Invoice value not found")
                  try:
                     if tax_category_s:
@@ -198,6 +203,12 @@ class Text_Converter:
                         igst_rate = "0.00"
                         igst_amt='0.00'
                  except:
+                     igst_amt = 'NA'
+                     igst_rate = "NA"
+                     sgst_rate = "NA"
+                     cgst_rate = "NA"
+                     sgst_amt = "NA"
+                     cgst_amt = "NA"
                      print("Exception handeled")
 
 
@@ -218,6 +229,7 @@ class Text_Converter:
                         igst_amt=igst_amts.replace(",","")
                         #print("IGST Amt: ", igst_amt)
                  except:
+                     igst_amt="NA"
                      print("Exception regarding igst handeled")
 
 
@@ -231,6 +243,7 @@ class Text_Converter:
                         invoice_num=invoice_num_with_len[12:actual_len]
                         #print("Invoice number: ", invoice_num)
                  except:
+                     invoice_num="NA"
                      print("Invoice number not found")
                  try:
                     if part_qty_s:
@@ -242,6 +255,7 @@ class Text_Converter:
                         #print('::'*20,part_qty)
 
                  except:
+                     part_qty="NA"
                      print("part No notfound")
 
                  try:
@@ -250,19 +264,14 @@ class Text_Converter:
                          part_qty_rate_full = word_list[word_list.index("Total") -3]
                          first_point_pos=part_qty_rate_full.find('.')
                          init_length=first_point_pos+3
-
                          full_len=len(part_qty_rate_full)
                          first_half = part_qty_rate_full[init_length:full_len]
                          secon_point_pos=first_half.find('.')+3
                          part_qty_rate=first_half[0:secon_point_pos]
-
-
-                         #print("part_rate is: "*20,part_qty_rate)
-                     #print(secon_point_pos)
-                         #gross_rate_format=part_qty_rate
                          gross_rate=part_qty_rate
                          #print("gross rate: "*20,gross_rate)
                  except:
+                     gross_rate="NA"
                      print("rate per qty not found")
                  try:
                     if net_rate_s:
@@ -278,6 +287,29 @@ class Text_Converter:
                         #print("conversion successfull"*30,net_rate)
                  except:
                      print("net rate not found")
+                 """try:
+                     if po_order_item_no_s:
+                         word_list=line.split()
+                         po_order_item_no=total_price= word_list[word_list.index("NO:") +1]
+                         print("po order item no "*20,po_order_item_no)
+                 except:
+                     print("Po order not found"*20)
+                     po_order_item_no="NA"""
+                 file_location = os.path.join(os.getcwd(), 'media', 'tabula_text')
+                 with open(file_location, 'r+') as fl:
+                     i = 0
+                     for line in fl:
+                         po_order_item_no_s= re.search(r'ITEM NO:', line)
+                         #multiple_data_s = re.search(r'Ea (\S)', line)
+                         try:
+                             if po_order_item_no_s:
+                                 # print("Yes found")
+                                 word_list = line.split()
+                                 print("wordlist is "*20,word_list)
+                                 po_order_item_no = word_list[word_list.index("NO:") + 1]
+                         except:
+                             po_order_item_no="NA"
+                             print("Part qty not found")
 
              #print("here is all amount: ",invoice_num,igst_rate,invoice_amt,vendor_code,invoice_date)
              try:
@@ -298,7 +330,10 @@ class Text_Converter:
                  'sgst_rate':sgst_rate,
                  'cgst_rate':cgst_rate,
                  'sgst_amt': sgst_amt,
-                 'cgst_amt': cgst_amt
+                 'cgst_amt': cgst_amt,
+                 'po_order_item_no': po_order_item_no
+
+
                 }
              except Exception as e:
                  print(e)
@@ -319,7 +354,9 @@ class Text_Converter:
                      'sgst_rate': "NA",
                      'cgst_rate': "NA",
                      'sgst_amt': "NA",
-                     'cgst_amt': "NA"
+                     'cgst_amt': "NA",
+                     'po_order_item_no':'NA'
+
                  }
              data=json.dumps(json_obj)
              print("data is: ",data)
