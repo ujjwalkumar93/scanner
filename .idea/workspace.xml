@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b815af5f-965d-41f7-a988-b45f8f52590a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/invoicescanner/static/img/VedarthLogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invoicescanner/static/img/loading.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invoicescanner/static/img/loading2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invoicescanner/static/img/home.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/invoicescanner/templates/fields.html" beforeDir="false" afterPath="$PROJECT_DIR$/invoicescanner/templates/fields.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/invoicescanner/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/invoicescanner/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/text" beforeDir="false" afterPath="$PROJECT_DIR$/media/text" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qrcode" beforeDir="false" afterPath="$PROJECT_DIR$/qrcode" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qrpdf.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/qrpdf.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,11 +21,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/invoicescanner/templates/fields.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2130">
-              <caret line="14" column="107" selection-start-line="14" selection-start-column="107" selection-end-line="14" selection-end-column="107" />
+            <state relative-caret-position="-1020">
+              <caret line="13" column="115" selection-start-line="13" selection-start-column="115" selection-end-line="13" selection-end-column="115" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#a#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -44,11 +38,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/invoicescanner/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="100" column="7" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
+            <state relative-caret-position="15">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#body#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -142,7 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>slugify</find>
       <find>brows</find>
       <find>here</find>
       <find>yes got the tax category</find>
@@ -172,6 +167,7 @@
       <find>part</find>
       <find>vendor code</find>
       <find>part_qty</find>
+      <find>.png</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -582,13 +578,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/invoicescanner/static/img/loading2.gif">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/invoicescanner/templates/fields.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2130">
-          <caret line="14" column="107" selection-start-line="14" selection-start-column="107" selection-end-line="14" selection-end-column="107" />
+        <state relative-caret-position="-1020">
+          <caret line="13" column="115" selection-start-line="13" selection-start-column="115" selection-end-line="13" selection-end-column="115" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#a#0;n#span#0;n#div#0;n#div#21;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -597,16 +596,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/invoicescanner/static/img/loading2.gif">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/invoicescanner/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="100" column="7" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
+        <state relative-caret-position="15">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#body#0;n#!!top" expanded="true" />
           </folding>
         </state>
