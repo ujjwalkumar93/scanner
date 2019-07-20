@@ -6,8 +6,8 @@
 </head>
 <body style="background-color:#4b4c9d">
 
-<div id="loading"></div>
-<div id="read"><b>Reading File...</b></div>
+<div style="text-align:center;margin-top:120px;">
+    <span class="appendMovingDots" style="font-size:20px;color:#FFFFFF;display:none;margin-bottom:-170px;"><b>Reading Your Invoice</b></span></div>
 <div id="con" style="background-color:#4b4c9d">
 <h2 >Invoice QR Code Generator</h2>
 <!-- Latest compiled and minified Bootstrap CSS -->
@@ -55,23 +55,35 @@ margin-top:46px;
 background-color:#545451;
 }
 
-#loading {
-    width: 140px;
-    height: 140px;
-    margin-left:46%;
-    margin-bottom:-170px;
-    margin-top:170px;
-    display: none;
-    background: url(/static/img/loading2.gif) no-repeat;
-    cursor: wait;
-    }
-#read {
-   text-align:center;
-    display:none;
-    margin-bottom:-170px;
 
-    color:#FFFFFF;
+
+.appendMovingDots:after {
+    content: ' .';
+    animation: dots 3s steps(1, end) infinite;
+}
+@keyframes dots {
+    0%, 12.5% {
+        opacity: 0;
     }
+    25% {
+        opacity: 1;
+    }
+    37.5% {
+        text-shadow: .5em 0;
+    }
+    50% {
+        text-shadow: .5em 0, 1em 0;
+    }
+    62.5% {
+        text-shadow: .5em 0, 1em 0, 1.5em 0;
+    }
+    75% {
+        text-shadow: .5em 0, 1em 0, 1.5em 0, 2em 0;
+    }
+    87.5%, 100%{
+        text-shadow: .5em 0, 1em 0, 1.5em 0, 2em 0, 2.5em;
+    }
+}
 
 </style>
 <script>
@@ -83,17 +95,19 @@ function showname () {
     };
 //cose for showing progressbar as blur all the display
     function loading(){
-            $("#loading").show();
-            $("#read").show();
+
+            $(".appendMovingDots").show();
 
             $("#con").css({'filter': 'blur(2px)'});
         }
 
      //code for clearing progress circle while going back in browser
        $(window).bind("pageshow", function() {
-        $("#loading").hide();
-        $("#read").hide();
-        $("#con").show();
+        $(".appendMovingDots").hide();
+        $("#con").css({'filter': 'blur(0px)'}).show();
+        //var disp=$("#con").off("blur");
+        //$("#con").off("blur").show();
+        //disp.show();
 });
 
 </script>
