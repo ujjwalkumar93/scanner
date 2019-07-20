@@ -5,6 +5,10 @@
 
 </head>
 <body style="background-color:#4b4c9d">
+
+<div id="loading"></div>
+<div id="read"><b>Reading File...</b></div>
+<div id="con" style="background-color:#4b4c9d">
 <h2 >Invoice QR Code Generator</h2>
 <!-- Latest compiled and minified Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -15,16 +19,12 @@
     <div class="custom-file" style="margin-left:20%;margin-right:20%;width:60%">
   <input type="file" class="custom-file-input" id="fileInput" multiple onchange="showname()" name="doccument" required>
   <label class="custom-file-label" id="filename">Choose Invoice </label>
-
-            <button type="submit" class="btn btn-primary"  style="background-color:#fbba00;color:black" id="upload" value="submit" >Upload Invoice</button>
+            <button type="submit" class="btn btn-primary"  style="background-color:#fbba00;color:black" id="upload" value="submit" onclick="loading()">Upload Invoice</button>
             <!--button type="button" class="btn btn-success" >Next  ->></button-->
-
 </div>
-
 </form>
-
 </div>
-
+</div>
 <style>
 body {
 padding-top: 1em;
@@ -38,42 +38,63 @@ margin-top:160px;
 .container-fluid{
 margin-top:46px;
 width:100%;
-
 }
 .btn-success{
 align="center";
 display: block;
 margin:auto;
 margin-top:16px;
-
 }
 .btn-primary{
 align="center";
 display: block;
 margin:auto;
 margin-top:46px;
-
 }
 #fileInput{
 background-color:#545451;
 }
 
-</style>
+#loading {
+    width: 140px;
+    height: 140px;
+    margin-left:46%;
+    margin-bottom:-170px;
+    margin-top:170px;
+    display: none;
+    background: url(/static/img/loading2.gif) no-repeat;
+    cursor: wait;
+    }
+#read {
+   text-align:center;
+    display:none;
+    margin-bottom:-170px;
 
+    color:#FFFFFF;
+    }
+
+</style>
 <script>
-function clearField(){
-$(window).bind("pageshow", function() {
-  // Clean form values
-});
-}
 
 function showname () {
       var name = document.getElementById('fileInput');
-
        var s= document.getElementById('filename');
           s.innerHTML =  name.files.item(0).name;
     };
+//cose for showing progressbar as blur all the display
+    function loading(){
+            $("#loading").show();
+            $("#read").show();
 
+            $("#con").css({'filter': 'blur(2px)'});
+        }
+
+     //code for clearing progress circle while going back in browser
+       $(window).bind("pageshow", function() {
+        $("#loading").hide();
+        $("#read").hide();
+        $("#con").show();
+});
 
 </script>
 </body>

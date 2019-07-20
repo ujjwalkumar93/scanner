@@ -25,7 +25,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.upload),
+    path('', views.upload, name='index'),
     path('fields/', views.fields),
     path('fields/generateqr', views.qr_generator),
 
