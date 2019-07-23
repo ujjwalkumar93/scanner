@@ -8,33 +8,13 @@ class Text_Converter:
     def __init__(self,file_url):
         self.file_url=file_url
         #print("file url is: ",self.file_url)
-
-    """def convert_pdf_to_text(self):
-        file_path=self.file_url
-        file_obj=open(file_path,'rb')
-        pdf_reader=PyPDF2.PdfFileReader(file_obj)
-        total_pages=pdf_reader.numPages
-        #print("Total number of pages: ",total_pages)
-        page_obj=pdf_reader.getPage(0 )
-
-        content=page_obj.extractText()
-        #print(content)
-
-        file_location=os.path.join(os.getcwd(),'media','text')
-        text_file=open(file_location,'w')
-        write_content=text_file.write(content)
-
-    def get_file_path(self):
-
-        return self.file_url"""
     def fields_data(self):
-
          file_location=os.path.join(os.getcwd(),'media','text')
          with open(file_location,'r+') as fl:
              i=0
              for line in fl:
                  try:
-                    po_s = re.search(r'Terms (\S+)', line)
+                    po_s = re.search(r'Terms|Terms (\S+)', line,re.IGNORECASE)
                     gst_s = re.search(r'MaharashtraDate (\S+)', line)
                     invoice_date_s = re.search(r'MaharashtraDate (\S+)', line)
                     vendor_code_s = re.search(r':Reg.Type (\S+)', line)
@@ -60,23 +40,22 @@ class Text_Converter:
                  except:
                      print("Exception handeled")
                  #print(po_s.group(0))
+                 print("Po_s is " * 5, po_s)
+
                  try:
                     if po_s:
                         word_list=line.split()
-                        po_no_s=word_list[word_list.index("Terms")+2]
-                        #po_no=po_no_s[0:10]
-                        po_num=po_no_s[1:11]
-                        #return po_num
-                        #print("Po number is: ",po_num)
+                        po_num=word_list[word_list.index("Terms")+2][1:11]
+                        #po_num=po_s.group(1)
+                        print("po num is: ",po_num)
+
                  except:
                     po_num="NA"
                     print("Po Number Not Found")
                  try:
                     if gst_s:
-                        #print("Gst line is: ",gst_s)
                         word_list=line.split()
                         gst_no=word_list[word_list.index("MaharashtraDate")-6][21:36]
-                        #print("Gst is: "*20,gst_no)
                  except:
                      gst_no="NA"
                      print("GST Number not found")
@@ -86,8 +65,6 @@ class Text_Converter:
                         invoice_date_format= word_list[word_list.index("MaharashtraDate")+1][1:12]
                         invoice_date_rep=invoice_date_format.replace('-','.')
                         newdate=invoice_date_rep[3:6]
-                        #print("new date is"*30,newdate)
-                        #new_date=invoice_date.strftime('%m/%d/%y')
                         m = {
                          'jan': '01',
                          'feb': '02',
@@ -103,12 +80,8 @@ class Text_Converter:
                          'dec': '12'
                         }
                         s = newdate.strip()[:3].lower()
-                 # except:
-                 #     print("Invoice date not found")
                         out = m[s]
                         invoice_date=invoice_date_rep.replace(newdate,out)
-
-                        #print("m"*10,out)
                  except:
                      invoice_date="NA"
                      print("Exception handeled")
@@ -180,10 +153,7 @@ class Text_Converter:
                         sgst_rate_act = word_list[( word_list.index("TotalAmount") - offset ) - 7][0:2]
                         sgst = sgst_rate_act.replace("%", "")
                         sgst_rate = sgst + ".00"
-                        #print("%" * 50, sgst_rate)
-
                         cgst_rate_act=word_list[( word_list.index("TotalAmount") - offset ) - 13]
-                        #print("#"*20,cgst_rate_act)
                         cgst=cgst_rate_act.replace('%','')
                         cgst_rate=cgst+".00"
                         #print("@"*30,cgst_rate)
@@ -210,15 +180,6 @@ class Text_Converter:
                      sgst_amt = "NA"
                      cgst_amt = "NA"
                      print("Exception handeled")
-
-
-
-                 # else:
-                 #     igst_rate="0.00"
-                 #     cgst_rate="0.00"
-                 #     sgst_rate="0.00"
-
-                     #print("igst% : ", igst_rate)
                  try:
                     if igst_amt_s and tax_cat[init_len:my_len]=='I-Gst':
                         word_list = line.split()
@@ -251,13 +212,9 @@ class Text_Converter:
                         part_qty_trimmed = word_list[word_list.index("Total") -3][0:3]
                         max_index=part_qty_trimmed.find('.')
                         part_qty=part_qty_trimmed[0:max_index]
-                        #print("part No: "*
-                        #print('::'*20,part_qty)
-
                  except:
                      part_qty="NA"
                      print("part No notfound")
-
                  try:
                     if rate_per_qty_s:
                          word_list = line.split()
@@ -299,14 +256,17 @@ class Text_Converter:
                  with open(file_location, 'r+') as fl:
                      i = 0
                      for line in fl:
-                         po_order_item_no_s= re.search(r'ITEM NO:', line)
-                         #multiple_data_s = re.search(r'Ea (\S)', line)
+                         po_order_item_no_s= re.search(r'ITEM NO:|ITEM NO :', line,re.IGNORECASE)
+                         print("po_order_item_no_s is: "*5,po_order_item_no_s)
                          try:
                              if po_order_item_no_s:
-                                 # print("Yes found")
+                                 print("Yes found"*10)
                                  word_list = line.split()
-                                 print("wordlist is "*20,word_list)
+                                 #print("wordlist is "*5,word_list)
                                  po_order_item_no = word_list[word_list.index("NO:") + 1]
+
+                                 print("Po order item no is ",po_order_item_no)
+
                          except:
                              po_order_item_no="NA"
                              print("Part qty not found")
