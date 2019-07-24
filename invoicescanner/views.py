@@ -56,11 +56,12 @@ def fields(request):
     file_location = os.path.join(os.getcwd(), 'media', 'text')
     if 'Nelson' in open(file_location).read():
         obj = Text_Converter_nel(file_path)
-        data=obj.fields_data_nel()
-        print("nelson found " * 20)
+        data =obj.fields_data_nel()
+        print("nelson found " *3,data)
+
         # return HttpResponse(template.render(data))
 
-    if 'HINDUSTAN' in open(file_location).read():
+    elif 'HINDUSTAN' in open(file_location).read():
         obj=Text_Converter_hindustan(file_path)
         data=obj.fields_data_hindustan()
         print("Hindustan Found "*20)
@@ -122,6 +123,8 @@ def qr_generator(request):
     HSN_code = request.POST.get('HSN_code', None)
     #print("data from qr: ",po_no)
     part_qty=part_qty_s+".000"
+    # cgst_rate = cgst_rate_s+".00"
+    # sgst_rate = sgst_rate_s + ".00"
     datalist = [po_no, item_no,part_qty,inv_no,inv_date,gross_rate,net_rate,vendor_code,part_no,cgst_value,sgst_value,igst_value,ugst_value,cgst_rate,sgst_rate,igst_rate,ugst_rate,cess,invoice_value,HSN_code]
     # adding 0.00 as default value for blank fields
     for n, i in enumerate(datalist):
@@ -154,6 +157,7 @@ def qr_generator(request):
             pageObj = pdfReader.getPage(pageNum)
             pageObj.mergePage(pdfWatermarkReader.getPage(0))
             pdfWriter.addPage(pageObj)
+
         base_name = "Nelson_invoice_" if not base_name else base_name
         now = datetime.now()
         time = now.strftime("%H:%M:%S")
@@ -169,7 +173,7 @@ def qr_generator(request):
 
         #code printing qrcode on invoice
 
-    if 'HINDUSTAN' in open(file_location).read():
+    elif 'HINDUSTAN' in open(file_location).read():
         qr = pyqrcode.create(data)
         qr.svg("qrcode", scale=1.1)
         # writing code to get location on QRCode
@@ -192,21 +196,20 @@ def qr_generator(request):
             pageObj = pdfReader.getPage(pageNum)
             pageObj.mergePage(pdfWatermarkReader.getPage(0))
             pdfWriter.addPage(pageObj)
-        base_name = "Nelson_invoice_" if not base_name else base_name
+
+        base_name = "Hindustan" if not base_name else base_name
         now = datetime.now()
         time = now.strftime("%H:%M:%S")
         now_time = "".join(time)
         res_file_name = base_name + now_time
         res_file_name = res_file_name.replace('/[^A-Z0-9]+/ig', "_")
+
         base_name = os.path.join(os.getcwd(), 'media', 'result', res_file_name)
         resultPdfFile = open(base_name, 'wb')
         pdfWriter.write(resultPdfFile)
         watermarkFile.close()
         minutesFile.close()
         resultPdfFile.close()
-
-
-
 
     else:
         qr = pyqrcode.create(data)
