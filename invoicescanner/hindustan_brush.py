@@ -94,7 +94,7 @@ class Text_Converter_hindustan:
                  try:
                      if cgst_rate_s:
                         word_list = line.split()
-                        cgst_rate = word_list[word_list.index("CGST") + 1].replace('%',"")
+                        cgst_rate = word_list[word_list.index("CGST") + 1].replace('%',"")+".00"
                         print("cgst rate is: "*5,cgst_rate)
                  except:
                      print("Cgst rate not found")
@@ -108,7 +108,7 @@ class Text_Converter_hindustan:
                  try:
                      if sgst_rate_s:
                         word_list = line.split()
-                        sgst_rate = word_list[word_list.index("SGST") + 1].replace('%',"")
+                        sgst_rate = word_list[word_list.index("SGST") + 1].replace('%',"")+".00"
                         print("sgst rate is: "*5,sgst_rate)
                  except:
                      print("Sgst rate not found")
@@ -133,7 +133,7 @@ class Text_Converter_hindustan:
              'po_no': po_no,
              'gst_no' : "Not found",
              'invoice_date' :invoice_date,
-             'vendor_code':'62040',
+             'vendor_code':'H62040',
              'part_no': part_no,
              'hsn_no': HSN_no,
              'invoice_val': total_amt,

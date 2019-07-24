@@ -27,14 +27,15 @@ class Text_Converter_nel:
          with open(file_location,'r+') as fl:
              i=0
              for line in fl:
-                 po_s = re.search(r'PURCHASE(\S+)', line,re.IGNORECASE)
-                 gst_s = re.search(r'www.nelsonglobalproducts.comGSTIN(\S+)', line,re.IGNORECASE)
-                 invoice_date_s = re.search(r'NO.:(\S+)', line,re.IGNORECASE)
-                 part_no_s = re.search(r'MEASUREQTYRATE(\S+)', line,re.IGNORECASE)
-                 HSN_s = re.search(r'VALUE(\S+)', line,re.IGNORECASE)
-                 invoice_value_s = re.search(r'REMOVAL`TOTAL(\S+)', line,re.IGNORECASE)
-                 invoice_num_s = re.search(r'Page(\S+)', line,re.IGNORECASE)
-                 sgst_amt_s=re.search(r'PACKING', line,re.IGNORECASE)
+                 po_s = re.search(r'PURCHASE|PURCHASE (\S+)', line,re.IGNORECASE)
+                 gst_s = re.search(r'www.nelsonglobalproducts.comGSTIN|www.nelsonglobalproducts.comGSTIN (\S+)', line,re.IGNORECASE)
+                 invoice_date_s = re.search(r'NO.:|NO.: (\S+)', line,re.IGNORECASE)
+                 part_no_s = re.search(r'MEASUREQTYRATE|MEASUREQTYRATE (\S+)', line,re.IGNORECASE)
+                 HSN_s = re.search(r'VALUE|VALUE (\S+)', line,re.IGNORECASE)
+                 invoice_value_s = re.search(r'REMOVAL`TOTAL|REMOVAL`TOTAL (\S+)', line,re.IGNORECASE)
+                 invoice_num_s = re.search(r'Page|Page (\S+)', line,re.IGNORECASE)
+                 sgst_amt_s=re.search(r'PACKING|PACKING ', line,re.IGNORECASE)
+                 print("Pos is! "*3,po_s)
                  try:
                     if po_s:
                         word_list=line.split()
@@ -42,7 +43,7 @@ class Text_Converter_nel:
                         po_no_s=word_list[word_list.index("PURCHASE")+4]
                         po_len=len(po_no_s)-4
                         po_no=po_no_s[0:po_len]
-                        print("Po number is: "*20,po_no)
+                        print("Po number is: "*3,po_no)
 
                  except:
                     po_no="NA"
