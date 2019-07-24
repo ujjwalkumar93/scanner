@@ -141,6 +141,8 @@ class Text_Converter_nel:
                  except:
                      vendor_code="C66270"
                      print("vendor code not found...")
+                 else:
+                     vendor_code = "C66270"
 
                  try:
                     if part_qty_s:

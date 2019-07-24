@@ -5,6 +5,7 @@ from django.shortcuts import render
 import pyqrcode
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
+from tabula import *
 from invoicescanner.nelson_pdf_to_text import *
 from invoicescanner.pdf_to_text import *
 from invoicescanner.hindustan_brush import *
