@@ -103,7 +103,7 @@ def fields(request):
 def qr_generator(request):
     po_no=request.POST.get('po', None)
     item_no=request.POST.get('item_no',None)
-    part_qty_s=request.POST.get('part_qty',None)
+    part_qty=request.POST.get('part_qty',None)
     gross_rate=request.POST.get('gross_rate',None)
     net_rate = request.POST.get('net_rate', None)
     cgst_value = request.POST.get('cgst_value', None)
@@ -122,7 +122,7 @@ def qr_generator(request):
     invoice_value = request.POST.get('invoice_value', None)
     HSN_code = request.POST.get('HSN_code', None)
     #print("data from qr: ",po_no)
-    part_qty=part_qty_s+".000"
+    #part_qty=part_qty_s+".000"
     # cgst_rate = cgst_rate_s+".00"
     # sgst_rate = sgst_rate_s + ".00"
     datalist = [po_no, item_no,part_qty,inv_no,inv_date,gross_rate,net_rate,vendor_code,part_no,cgst_value,sgst_value,igst_value,ugst_value,cgst_rate,sgst_rate,igst_rate,ugst_rate,cess,invoice_value,HSN_code]

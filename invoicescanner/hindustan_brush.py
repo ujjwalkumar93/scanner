@@ -53,7 +53,7 @@ class Text_Converter_hindustan:
                     if part_qty_s:
                         word_list = line.split()
                         print(word_list)
-                        part_qty = word_list[word_list.index("It") + 4]
+                        part_qty = word_list[word_list.index("It") + 4]+".000"
                         print("part qty "*5, part_qty)
 
                  except:

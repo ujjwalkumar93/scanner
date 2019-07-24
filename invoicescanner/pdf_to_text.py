@@ -20,9 +20,9 @@ class Text_Converter:
                     vendor_code_s = re.search(r':Reg.Type (\S+)', line)
                     part_no_s = re.search(r':Reg.Type (\S+)', line)
                     HSN_s = re.search(r'Total(\S+)', line)
-                    invoice_value_s = re.search(r'TotalAmount (\S+)', line)
-                    igst_s=re.search(r'TotalAmount', line)
-                    igst_amt_s = re.search(r'TotalAmount', line)
+                    invoice_value_s = re.search(r'TotalAmount|TotalAmount (\S+)', line,re.IGNORECASE)
+                    # igst_s=re.search(r'TotalAmount|TotalAmount (\S+)', line,re.IGNORECASE)
+                    # igst_amt_s = re.search(r'TotalAmount|TotalAmount (\S+)', line,re.IGNORECASE)
                     invoice_num_s = re.search(r'Challan', line)
                     part_qty_s=re.search(r'Total', line)
                     rate_per_qty_s=re.search(r'Total', line)
@@ -124,9 +124,11 @@ class Text_Converter:
                  except:
                      invoice_amt="NA"
                      print("Invoice value not found")
-                 try:
+                 print("tax cat_s "*10,tax_category_s)
+                 """try:
                     if tax_category_s:
                         word_list = line.split()
+                        print("Print word lis is : ",word_list)
                         tax_cat=word_list[( word_list.index("TotalAmount") - offset ) - 8]
 
                         if 'gst' not in tax_cat.lower():
@@ -137,18 +139,21 @@ class Text_Converter:
                         #code for differentiate tax categories
                  except Exception as e:
                      print("tax category not found: ", repr(e))
+                 print("taxt_cat "*5,tax_cat)
                  try:
                     if igst_s and tax_cat[init_len:my_len]=='I-Gst':
+                        print("yes found IGST "*20)
                         word_list = line.split()
                         igst_rate_act = word_list[( word_list.index("TotalAmount") - offset ) -7][0:2]
                         igst=igst_rate_act.replace("%","")
-                        #print("%"*50,igst)
+                        print("%"*50,igst)
                         igst_rate=igst+".00"
                         sgst_rate="0.00"
                         cgst_rate="0.00"
                         sgst_amt="0.00"
                         cgst_amt="0.00"
                     elif igst_s and tax_cat[init_len:my_len]=='S-Gst':
+                        print("yes found SGST " * 20)
                         word_list = line.split()
                         sgst_rate_act = word_list[( word_list.index("TotalAmount") - offset ) - 7][0:2]
                         sgst = sgst_rate_act.replace("%", "")
@@ -191,7 +196,7 @@ class Text_Converter:
                         #print("IGST Amt: ", igst_amt)
                  except:
                      igst_amt="NA"
-                     print("Exception regarding igst handeled")
+                     print("Exception regarding igst handeled")"""
 
 
 
@@ -211,7 +216,7 @@ class Text_Converter:
                         word_list=line.split()
                         part_qty_trimmed = word_list[word_list.index("Total") -3][0:3]
                         max_index=part_qty_trimmed.find('.')
-                        part_qty=part_qty_trimmed[0:max_index] + '.000'
+                        part_qty=part_qty_trimmed[0:max_index]+".000"
 
                  except:
                      part_qty="NA"
@@ -241,7 +246,7 @@ class Text_Converter:
                         price=float(round)
                         qty=float(part_qty)
                         net=price/qty
-                        net_rate=format(net,'.2f')
+                        net_rate=format(net,'.2f').replace(",","")
                         #print("conversion successfull"*30,net_rate)
                  except:
                      print("net rate not found")
@@ -258,7 +263,10 @@ class Text_Converter:
                      i = 0
                      for line in fl:
                          po_order_item_no_s= re.search(r'ITEM NO:|ITEM NO :', line,re.IGNORECASE)
-                         print("po_order_item_no_s is: "*5,po_order_item_no_s)
+                         igst_tax_s = re.search(r'I-Gst|I-Gst ', line,re.IGNORECASE)
+                         sgst_tax_s = re.search(r'S-Gst|S-Gst ', line, re.IGNORECASE)
+                         cgst_tax_s = re.search(r'C-Gst|C-Gst ', line, re.IGNORECASE)
+                         #print("po_order_item_no_s is: "*5,po_order_item_no_s)
                          try:
                              if po_order_item_no_s:
                                  print("Yes found"*10)
@@ -271,6 +279,41 @@ class Text_Converter:
                          except:
                              po_order_item_no="NA"
                              print("Part qty not found")
+                         try:
+                             if igst_tax_s:
+                                 word_list=line.split()
+                                 print("Word list is: ",word_list)
+                                 igst_rate=word_list[word_list.index("I-Gst")+1].replace("%",".00")
+                                 igst_amt = word_list[word_list.index("I-Gst") + 6].replace(",","")
+                                 cgst_rate="0.00"
+                                 sgst_rate="0.00"
+                                 cgst_amt="0.00"
+                                 sgst_amt="0.00"
+                                 print("Igst is: "*5,igst_amt)
+                         except:
+                             igst_rate="NA"
+                             igst_amt="NA"
+                             print("Tax exception handeled")
+                         try:
+                             if sgst_tax_s:
+                                 word_list=line.split()
+                                 print("wordlist "*5,word_list)
+                                 sgst_rate=word_list[word_list.index("S-Gst")+1].replace("%",".00")
+                                 sgst_amt = word_list[word_list.index("S-Gst") + 6].replace(",","")
+                                 igst_amt="0.00"
+                                 igst_rate="0.00"
+                         except:
+                             sgst_rate="NA"
+                             sgst_amt="NA"
+                         try:
+                             if cgst_tax_s:
+                                 word_list=line.split()
+                                 cgst_rate = word_list[word_list.index("C-Gst") + 1].replace("%", ".00")
+                                 cgst_amt = word_list[word_list.index("C-Gst") + 6].replace(",","")
+                         except:
+                             cgst_amt="NA"
+                             cgst_rate="NA"
+
 
              #print("here is all amount: ",invoice_num,igst_rate,invoice_amt,vendor_code,invoice_date)
              try:
