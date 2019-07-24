@@ -64,11 +64,11 @@ def fields(request):
     elif 'HINDUSTAN' in open(file_location).read():
         obj=Text_Converter_hindustan(file_path)
         data=obj.fields_data_hindustan()
-        print("Hindustan Found "*20)
+        print("Hindustan Found "*3)
     else:
         obj = Text_Converter(file_path)
         data=obj.fields_data()
-        print("bagwati found " * 20)
+        print("bagwati found " * 3)
         print(data)
 
     print("#"*20,data)

@@ -11,17 +11,6 @@ class Text_Converter_nel:
         self.file_url=file_url
         #print("file url is: ",self.file_url)
 
-    """def convert_pdf_to_text_nel(self):
-        file_path=self.file_url
-        tabula_text_file_location =os.path.join(os.getcwd(), 'media', 'tabula_text')
-        tabula_text_file=open(tabula_text_file_location,'w+')
-        df = read_pdf(file_path, pages="1")
-        #tabula_text_file.truncate(0)
-        df.to_csv(tabula_text_file,sep='\t')
-        #print(df)
-    def get_file_path_nel(self):
-        return self.file_url"""
-
     def fields_data_nel(self):
          file_location=os.path.join(os.getcwd(),'media','text')
          with open(file_location,'r+') as fl:
@@ -35,7 +24,10 @@ class Text_Converter_nel:
                  invoice_value_s = re.search(r'REMOVAL`TOTAL|REMOVAL`TOTAL (\S+)', line,re.IGNORECASE)
                  invoice_num_s = re.search(r'Page|Page (\S+)', line,re.IGNORECASE)
                  sgst_amt_s=re.search(r'PACKING|PACKING ', line,re.IGNORECASE)
-                 print("Pos is! "*3,po_s)
+
+                 #print("Vendor code "*2,vendor_code_s)
+
+
                  try:
                     if po_s:
                         word_list=line.split()
@@ -46,7 +38,7 @@ class Text_Converter_nel:
                         print("Po number is: "*3,po_no)
 
                  except:
-                    po_no="NA"
+                    po_no="Not found"
                     print("Po Number Not Found")
 
                  try:
@@ -57,7 +49,7 @@ class Text_Converter_nel:
                         #print("Gst is: "*20,gst_no)
                         #print(word_list)
                  except:
-                     gst_no="NA"
+                     gst_no="Not found"
                      print("GST Number not found")
 
                  try:
@@ -84,7 +76,7 @@ class Text_Converter_nel:
                         out = m[s]
                         invoice_date=invoice_date_rep.replace(newdate,out)
                  except:
-                     invoice_date="NA"
+                     invoice_date="Not found"
                      print("Exception handeled")
 
                  try:
@@ -97,7 +89,7 @@ class Text_Converter_nel:
                         part_no=second_half[init_index:last_index]
 
                  except:
-                     part_no = "NA"
+                     part_no = "Not found"
                      print("part number not found")
 
                  try:
@@ -105,7 +97,7 @@ class Text_Converter_nel:
                         word_list = line.split()
                         HSN_no = word_list[word_list.index("VALUE") +1][54:62]
                  except:
-                     HSN_no="NA"
+                     HSN_no="Not found"
                      print("HSN Number not found")
 
                  try:
@@ -117,7 +109,7 @@ class Text_Converter_nel:
                         invoice_amts=total_amt[11:last_index]
                         #print("TotalAmount "*30, invoice_amts)
                  except:
-                     invoice_amts="NA"
+                     invoice_amts="Not found"
                      print("Invoice value not found")
 
                  try:
@@ -130,7 +122,7 @@ class Text_Converter_nel:
                         print("Invoice number: "*23, invoice_num)
 
                  except:
-                     invoice_num="NA"
+                     invoice_num="Not found"
                      print("Invoice number not found")
          #code for getting complex data
          file_location = os.path.join(os.getcwd(), 'media', 'tabula_text')
@@ -139,6 +131,18 @@ class Text_Converter_nel:
              for line in fl:
                  part_qty_s = re.search(r'Page Total', line)
                  multiple_data_s=re.search(r'Ea (\S)', line)
+                 vendor_code_s = re.search(r'Vendor Code|Vendor Code |Vendor Code:(\S+)', line, re.IGNORECASE)
+
+                 try:
+                     if vendor_code_s:
+                         word_list=line.split()
+                         print("Vendor code wordlist is: "*5,word_list)
+                         vendor_code=word_list[word_list.index("MOTORS")+3].replace(")",'')
+                         print("vendor code is: "*5,vendor_code)
+                 except:
+                     vendor_code="Not found"
+                     print("vendor code not found...")
+
                  try:
                     if part_qty_s:
                         #print("Yes found")
@@ -147,6 +151,7 @@ class Text_Converter_nel:
                         part_qty=word_list[word_list.index("Total")+1]+".000"
                         #print("qty is: "*15,part_qty)
                  except:
+                     part_qty="Not found"
                      print("Part qty not found")
                  try:
                      if multiple_data_s:
@@ -154,18 +159,38 @@ class Text_Converter_nel:
                          print("first line is: ",word_list)
                          #print('printing next line: ',next(line))
                          net_rate=gross_rate=word_list[word_list.index('Ea')+2]
-                         cgst_rate=word_list[word_list.index('Ea')+4]
+                         print("net rate = gross rate ="*5,gross_rate)
+                         cgst_rate=word_list[word_list.index('Ea')+4]+".00"
                          cgst_amt=word_list[word_list.index('Ea')+5]
-                         sgst_rate = word_list[word_list.index('Ea') + 6]
+                         sgst_rate = word_list[word_list.index('Ea') + 6]+".00"
                          sgst_amt = word_list[word_list.index('Ea') + 7]
+                         datalist=[cgst_rate,cgst_amt,sgst_rate,sgst_amt]
+                         print("type"*5, type(cgst_amt))
+                         print("datalist "*5,datalist)
+                         if cgst_rate == "0.00" and cgst_amt == "0.00" and sgst_rate == "0.00" and sgst_amt == "0.00":
+                             print("yes came inside if block"*5)
+                             igst_rate= word_list[word_list.index('Ea')+8]+".00"
+                             igst_amt=word_list[word_list.index('Ea')+9]
+                             cgst_amt= "0.00"
+                             cgst_rate= "0.00"
+                             sgst_rate="0.00"
+                             sgst_amt="0.00"
+                         else:
+                             print("came in outer block"*5)
+                             cgst_rate=cgst_rate
+                             cgst_amt=cgst_amt
+                             sgst_rate=sgst_rate
+                             sgst_amt=sgst_amt
+                             igst_rate="0.00"
+                             igst_amt="0.00"
 
-                         d=[net_rate,cgst_rate,cgst_amt,sgst_amt,sgst_rate,po_no,gst_no,invoice_date,part_no,HSN_no,invoice_amts]
-                         print("all data is: ",d)
+                         #d=[net_rate,cgst_rate,cgst_amt,sgst_amt,sgst_rate,po_no,gst_no,invoice_date,part_no,HSN_no,invoice_amts]
+                         #print("all data is: ",d)
 
                  except:
                      #net_rate, cgst_rate, cgst_amt, sgst_amt, sgst_rate, po_no, gst_no, invoice_date, part_no, HSN_no, invoice_amts="NA"
 
-                     print("Gross rate not found")
+                     print("multiple data exception handeled "*3)
 
 
          try:
@@ -173,12 +198,12 @@ class Text_Converter_nel:
              'po_no': po_no,
              'gst_no' : gst_no,
              'invoice_date': invoice_date,
-             'vendor_code':'N72071',
+             'vendor_code':vendor_code,
              'part_no': part_no,
              'hsn_no': HSN_no,
              'invoice_val': invoice_amts,
-             'igst_rate': "0.00",
-             'igst_amt': "0.00",
+             'igst_rate': igst_rate,
+             'igst_amt': igst_amt,
              'invoice_num': invoice_num,
              'part_qty':part_qty,
              'gross_rate':gross_rate,
