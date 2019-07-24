@@ -144,7 +144,7 @@ class Text_Converter_nel:
                         #print("Yes found")
                         word_list=line.split()
                         #print("word list is: ",word_list)
-                        part_qty=word_list[word_list.index("Total")+1]
+                        part_qty=word_list[word_list.index("Total")+1]+".000"
                         #print("qty is: "*15,part_qty)
                  except:
                      print("Part qty not found")
