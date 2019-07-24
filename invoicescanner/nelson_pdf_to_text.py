@@ -19,7 +19,6 @@ class Text_Converter_nel:
         #tabula_text_file.truncate(0)
         df.to_csv(tabula_text_file,sep='\t')
         #print(df)
-
     def get_file_path_nel(self):
         return self.file_url"""
 
@@ -28,14 +27,14 @@ class Text_Converter_nel:
          with open(file_location,'r+') as fl:
              i=0
              for line in fl:
-                 po_s = re.search(r'PURCHASE (\S+)', line)
-                 gst_s = re.search(r'www.nelsonglobalproducts.comGSTIN (\S+)', line)
-                 invoice_date_s = re.search(r'NO.: (\S+)', line)
-                 part_no_s = re.search(r'MEASUREQTYRATE (\S+)', line)
-                 HSN_s = re.search(r'VALUE (\S+)', line)
-                 invoice_value_s = re.search(r'REMOVAL`TOTAL (\S+)', line)
-                 invoice_num_s = re.search(r'Page (\S+)', line)
-                 sgst_amt_s=re.search(r'PACKING', line)
+                 po_s = re.search(r'PURCHASE(\S+)', line,re.IGNORECASE)
+                 gst_s = re.search(r'www.nelsonglobalproducts.comGSTIN(\S+)', line,re.IGNORECASE)
+                 invoice_date_s = re.search(r'NO.:(\S+)', line,re.IGNORECASE)
+                 part_no_s = re.search(r'MEASUREQTYRATE(\S+)', line,re.IGNORECASE)
+                 HSN_s = re.search(r'VALUE(\S+)', line,re.IGNORECASE)
+                 invoice_value_s = re.search(r'REMOVAL`TOTAL(\S+)', line,re.IGNORECASE)
+                 invoice_num_s = re.search(r'Page(\S+)', line,re.IGNORECASE)
+                 sgst_amt_s=re.search(r'PACKING', line,re.IGNORECASE)
                  try:
                     if po_s:
                         word_list=line.split()
@@ -163,7 +162,7 @@ class Text_Converter_nel:
                          print("all data is: ",d)
 
                  except:
-                     net_rate, cgst_rate, cgst_amt, sgst_amt, sgst_rate, po_no, gst_no, invoice_date, part_no, HSN_no, invoice_amts="NA"
+                     #net_rate, cgst_rate, cgst_amt, sgst_amt, sgst_rate, po_no, gst_no, invoice_date, part_no, HSN_no, invoice_amts="NA"
 
                      print("Gross rate not found")
 
