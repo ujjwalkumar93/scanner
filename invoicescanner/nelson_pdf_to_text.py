@@ -2,8 +2,7 @@ from __future__ import division
 import os
 import PyPDF2
 import re
-from tabula import read_pdf
-import pandas
+
 import json
 class Text_Converter_nel:
 
@@ -140,7 +139,7 @@ class Text_Converter_nel:
                          vendor_code=word_list[word_list.index("MOTORS")+3].replace(")",'')
                          print("vendor code is: "*5,vendor_code)
                  except:
-                     vendor_code="Not found"
+                     vendor_code="C66270"
                      print("vendor code not found...")
 
                  try:

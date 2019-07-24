@@ -1,6 +1,5 @@
 from __future__ import division
 import os
-import PyPDF2
 import re
 import json
 class Text_Converter:
@@ -92,7 +91,7 @@ class Text_Converter:
                         vendor_code = word_list[word_list.index(":Reg.Type") + 4][0:6]
                         #print("vendor code: ", vendor_code)
                  except:
-                     vendor_code="NA"
+                     vendor_code="B64030"
                      print("vendor code not found")
                  try:
                     if part_no_s:
@@ -217,6 +216,7 @@ class Text_Converter:
                         part_qty_trimmed = word_list[word_list.index("Total") -3][0:3]
                         max_index=part_qty_trimmed.find('.')
                         part_qty=part_qty_trimmed[0:max_index]+".000"
+
                  except:
                      part_qty="NA"
                      print("part No notfound")
