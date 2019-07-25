@@ -8,3 +8,6 @@ media/text
 qrcode
 qrpdf.pdf
 nohup.out
+venv/*
+.venv/*
+.idea/*
