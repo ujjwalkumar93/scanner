@@ -94,8 +94,6 @@ class Text_Converter:
                         word_list = line.split()
                         vendor_code = word_list[word_list.index(":Reg.Type") + 4][0:6]
                         # print("vendor code: ", vendor_code)
-                    else:
-                        vendor_code = "B64030"
                 except:
                     vendor_code = "B64030"
                     print("vendor code not found")
@@ -319,6 +317,8 @@ class Text_Converter:
 
             # print("here is all amount: ",invoice_num,igst_rate,invoice_amt,vendor_code,invoice_date)
             try:
+                if not vendor_code:
+                    vendor_code = "B64030"
                 json_obj = {
                     'po_no': po_num,
                     'gst_no': gst_no,

@@ -127,21 +127,29 @@ class Text_Converter_nel:
                     print("Invoice number not found")
         # code for getting complex data
         file_location = os.path.join(os.getcwd(), 'media', 'tabula_text')
+        vendor_code = ''
         with open(file_location, 'r+') as fl:
             i = 0
             for line in fl:
                 part_qty_s = re.search(r'Page Total', line)
                 multiple_data_s = re.search(r'Ea (\S)', line)
                 vendor_code_s = re.search(r'Vendor Code|Vendor Code |Vendor Code:(\S+)', line, re.IGNORECASE)
+                print()
+                print()
+                print(line)
+
+                print()
+                print(vendor_code_s)
+                print()
+                print()
+                print()
 
                 try:
-                    if vendor_code_s:
+                    if  vendor_code_s and not vendor_code:
                         word_list = line.split()
                         print("Vendor code wordlist is: " * 5, word_list)
                         vendor_code = word_list[word_list.index("MOTORS") + 3].replace(")", '')
                         print("vendor code is: " * 5, vendor_code)
-                    else:
-                        vendor_code = "C66270"
                 except:
                     vendor_code = "C66270"
                     print("vendor code not found...")
@@ -196,6 +204,8 @@ class Text_Converter_nel:
                     print("multiple data exception handeled " * 3)
 
         try:
+            if not vendor_code:
+                vendor_code = "C66270"
             json_obj = {
                 'po_no': po_no,
                 'gst_no': gst_no,
