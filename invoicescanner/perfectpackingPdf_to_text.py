@@ -117,18 +117,23 @@ class Text_Converter_perfect_packing:
                      cgst_amt = "Not Found"
 
                  try:
-                     print("HSN code_s : ",hsn_code_s)
+                     print("HSN code_s : ", hsn_code_s)
                      if hsn_code_s:
-                         word_list=line.split()
-                         print("word list for HSN Code"*5,word_list)
-                         list_lenth=len(word_list)-6
-                         hsn_code_with_unwanted_text=word_list[word_list.index("15")+list_lenth]
-                         #decimal_position=hsn_code_with_unwanted_text.index('.')
-                         #print("decimal found at"*5,decimal_position)
-                         hsn_code=hsn_code_with_unwanted_text
-                         print("HSN Code is:",hsn_code)
+                         word_list = line.split()
+                         #print("word list for HSN Code" * 5, word_list)
+                         list_lenth = len(word_list) - 6
+                         hsn_code_predict = word_list[word_list.index("15") + list_lenth]
+                         if hsn_code_predict.find('.') == 1:
+                             print("inside if block "*20)
+                             hsn_code=word_list[word_list.index("15")+(list_lenth-1)]
+                         else:
+                             print("inside else block " * 20)
+                             hsn_code=word_list[word_list.index("15")+(list_lenth)]
+
+                         print("decimal"*10,hsn_code.find('.'))
+                         print("HSN Code is:", hsn_code)
                  except:
-                     hsn_code="Not Found"
+                     hsn_code = "Not Found"
 
          file_location = os.path.join(os.getcwd(), 'media','text')
          with open(file_location, 'r+') as fl:
@@ -152,7 +157,7 @@ class Text_Converter_perfect_packing:
                  try:
                      if net_rate_s:
                          word_list=line.split()
-                         print("Word list for net rate is: ",word_list)
+                         #print("Word list for net rate is: ",word_list)
                          net_rate_with_extra_char=word_list[word_list.index("sales@perfectpacking.in")+2]
                          last_index=net_rate_with_extra_char.index(".")+3
                          net_rate=net_rate_with_extra_char[0:last_index]

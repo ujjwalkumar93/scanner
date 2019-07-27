@@ -250,7 +250,7 @@ def qr_generator(request):
             pageObj.mergePage(pdfWatermarkReader.getPage(0))
             pdfWriter.addPage(pageObj)
 
-        base_name = "Perfect" if not base_name else base_name
+        base_name = "perfect" if not base_name else base_name
         now = datetime.now()
         time = now.strftime("%H:%M:%S")
         now_time = "".join(time)
