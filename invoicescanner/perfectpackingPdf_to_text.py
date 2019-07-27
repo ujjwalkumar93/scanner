@@ -84,7 +84,7 @@ class Text_Converter_perfect_packing:
                          word_list=line.split()
                          igst_rate=word_list[word_list.index("IGST")+2]+".00"
                          #print("IGST rate is: "*10,igst_rate)
-                         igst_amt=word_list[word_list.index("IGST")+6]
+                         igst_amt=word_list[word_list.index("IGST")+7]
                          #print("Igst amt is: "*10,igst_amt)
                          sgst_rate="0.00"
                          sgst_amt="0.00"
@@ -98,7 +98,7 @@ class Text_Converter_perfect_packing:
                      if sgst_s:
                          word_list=line.split()
                          sgst_rate=word_list[word_list.index("SGST")+2]+".00"
-                         sgst_amt=word_list[word_list.index("SGST")+6]
+                         sgst_amt=word_list[word_list.index("SGST")+7]
 
                  except:
                      sgst_rate="Not found"
@@ -108,7 +108,7 @@ class Text_Converter_perfect_packing:
                      if cgst_s:
                          word_list = line.split()
                          cgst_rate = word_list[word_list.index("CGST") + 2] + ".00"
-                         cgst_amt = word_list[word_list.index("CGST") + 6]
+                         cgst_amt = word_list[word_list.index("CGST") + 7]
                          igst_rate="0.00"
                          igst_amt="0.00"
 
