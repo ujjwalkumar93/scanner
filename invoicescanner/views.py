@@ -8,6 +8,7 @@ from datetime import datetime
 from tabula import *
 from invoicescanner.nelson_pdf_to_text import *
 from invoicescanner.pdf_to_text import *
+from invoicescanner.perfectpackingPdf_to_text import *
 from invoicescanner.hindustan_brush import *
 from django.template import loader
 import os
@@ -29,22 +30,30 @@ def upload(request):
         name = fs.save(uploaded_file.name, uploaded_file)
         context['url'] = fs.url(name)
         global file_path
-        file_path = os.path.join(os.getcwd(),'media',name)
-        file_obj = open(file_path, 'rb')
-        pdf_reader = PyPDF2.PdfFileReader(file_obj)
-        total_pages = pdf_reader.numPages
-        # print("Total number of pages: ",total_pages)
-        page_obj = pdf_reader.getPage(0)
-        content = page_obj.extractText()
-        # print(content)
-        file_location = os.path.join(os.getcwd(), 'media', 'text')
-        text_file = open(file_location, 'w')
-        write_content = text_file.write(content)
-        tabula_text_file_location = os.path.join(os.getcwd(), 'media', 'tabula_text')
-        tabula_text_file = open(tabula_text_file_location, 'w+')
-        df = read_pdf(file_path, pages="1")
-        # tabula_text_file.truncate(0)
-        df.to_csv(tabula_text_file, sep='\t')
+        #code for identify file extension name
+        if name.endswith('.xlsx'):
+            file_location = os.path.join(os.getcwd(), 'media', 'text')
+            text_file = open(file_location, 'w')
+            text_file.write("Excel file")
+            print("Excell sheet found "*10,name)
+        else:
+            print("PDF found "*10,name)
+            file_path = os.path.join(os.getcwd(),'media',name)
+            file_obj = open(file_path, 'rb')
+            pdf_reader = PyPDF2.PdfFileReader(file_obj)
+            total_pages = pdf_reader.numPages
+            # print("Total number of pages: ",total_pages)
+            page_obj = pdf_reader.getPage(0)
+            content = page_obj.extractText()
+            # print(content)
+            file_location = os.path.join(os.getcwd(), 'media', 'text')
+            text_file = open(file_location, 'w')
+            write_content = text_file.write(content)
+            tabula_text_file_location = os.path.join(os.getcwd(), 'media', 'tabula_text')
+            tabula_text_file = open(tabula_text_file_location, 'w+')
+            df = read_pdf(file_path, pages="1")
+            # tabula_text_file.truncate(0)
+            df.to_csv(tabula_text_file, sep='\t')
         if uploaded_file.name!="doccument":
              return HttpResponseRedirect('fields')
     return render(request,'index.html')
@@ -66,6 +75,13 @@ def fields(request):
         obj=Text_Converter_hindustan(file_path)
         data=obj.fields_data_hindustan()
         print("Hindustan Found "*3)
+
+    elif 'AssociatesDealer' in open(file_location).read():
+        print("Perfect Packing Found " * 3)
+        obj=Text_Converter_perfect_packing(file_path)
+        data=obj.fields_data_perfect_packing()
+        print("Perfect Packing Found "*3)
+
     else:
         obj = Text_Converter(file_path)
         data=obj.fields_data()
@@ -122,10 +138,7 @@ def qr_generator(request):
     igst_rate = request.POST.get('igst_rate', None)
     invoice_value = request.POST.get('invoice_value', None)
     HSN_code = request.POST.get('HSN_code', None)
-    #print("data from qr: ",po_no)
-    #part_qty=part_qty_s+".000"
-    # cgst_rate = cgst_rate_s+".00"
-    # sgst_rate = sgst_rate_s + ".00"
+
     datalist = [po_no, item_no,part_qty,inv_no,inv_date,gross_rate,net_rate,vendor_code,part_no,cgst_value,sgst_value,igst_value,ugst_value,cgst_rate,sgst_rate,igst_rate,ugst_rate,cess,invoice_value,HSN_code]
     # adding 0.00 as default value for blank fields
     for n, i in enumerate(datalist):
@@ -199,6 +212,45 @@ def qr_generator(request):
             pdfWriter.addPage(pageObj)
 
         base_name = "Hindustan" if not base_name else base_name
+        now = datetime.now()
+        time = now.strftime("%H:%M:%S")
+        now_time = "".join(time)
+        res_file_name = base_name + now_time
+        res_file_name = res_file_name.replace('/[^A-Z0-9]+/ig', "_")
+
+        base_name = os.path.join(os.getcwd(), 'media', 'result', res_file_name)
+        resultPdfFile = open(base_name, 'wb')
+        pdfWriter.write(resultPdfFile)
+        watermarkFile.close()
+        minutesFile.close()
+        resultPdfFile.close()
+
+
+    elif 'sales@perfectpacking.in' in open(file_location).read():
+        qr = pyqrcode.create(data)
+        qr.svg("qrcode", scale=1.1)
+        # writing code to get location on QRCode
+        qrcode_path = os.path.join(os.getcwd(), 'qrcode')
+        drawing = svg2rlg(qrcode_path)
+        scaleFactor = 1
+        drawing.width *= scaleFactor
+        drawing.height *= scaleFactor
+        drawing.scale(scaleFactor, scaleFactor)
+        drawing.shift(25, -420)
+        # creating qrcode on blank pdf so later we can merge as watermark on origional pdf
+        renderPDF.drawToFile(drawing, "qrpdf.pdf", autoSize=0)
+        blank_pdf_qr = os.path.join(os.getcwd(), 'qrpdf.pdf')
+        watermarkFile = open(blank_pdf_qr, 'rb')
+        pdfWatermarkReader = PyPDF2.PdfFileReader(watermarkFile)
+        minutesFile = open(file_path, 'rb')
+        pdfReader = PyPDF2.PdfFileReader(minutesFile)
+        pdfWriter = PyPDF2.PdfFileWriter()
+        for pageNum in range(pdfReader.numPages):
+            pageObj = pdfReader.getPage(pageNum)
+            pageObj.mergePage(pdfWatermarkReader.getPage(0))
+            pdfWriter.addPage(pageObj)
+
+        base_name = "Perfect" if not base_name else base_name
         now = datetime.now()
         time = now.strftime("%H:%M:%S")
         now_time = "".join(time)

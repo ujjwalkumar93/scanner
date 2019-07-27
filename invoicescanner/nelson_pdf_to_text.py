@@ -134,22 +134,13 @@ class Text_Converter_nel:
                 part_qty_s = re.search(r'Page Total', line)
                 multiple_data_s = re.search(r'Ea (\S)', line)
                 vendor_code_s = re.search(r'Vendor Code|Vendor Code |Vendor Code:(\S+)', line, re.IGNORECASE)
-                print()
-                print()
-                print(line)
-
-                print()
-                print(vendor_code_s)
-                print()
-                print()
-                print()
 
                 try:
                     if  vendor_code_s and not vendor_code:
                         word_list = line.split()
-                        print("Vendor code wordlist is: " * 5, word_list)
+                        #print("Vendor code wordlist is: " * 5, word_list)
                         vendor_code = word_list[word_list.index("MOTORS") + 3].replace(")", '')
-                        print("vendor code is: " * 5, vendor_code)
+                        #print("vendor code is: " * 5, vendor_code)
                 except:
                     vendor_code = "C66270"
                     print("vendor code not found...")

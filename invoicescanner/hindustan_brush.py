@@ -38,7 +38,7 @@ class Text_Converter_hindustan:
                         po_no=word_list[word_list.index("P.O.No.:")+1]
                         print("Po number is: "*5,po_no)
                  except:
-                    po_no=po_no
+                    po_no="Not Found"
                     print("Po Number Not Found ")
 
                  try:
@@ -47,7 +47,7 @@ class Text_Converter_hindustan:
                         invoice_date= word_list[word_list.index("Date:")+1].replace('/','.')
                         print("invoice date is: "*5,invoice_date)
                  except:
-                     invoice_date=invoice_date
+                     invoice_date="Not found"
                      print("invoice date not found")
                  try:
                     if part_qty_s:
