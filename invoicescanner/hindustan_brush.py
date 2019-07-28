@@ -14,6 +14,8 @@ class Text_Converter_hindustan:
 
     def fields_data_hindustan(self):
          file_location=os.path.join(os.getcwd(),'media','tabula_text')
+         po_no = "Not Found"
+         invoice_date = "Not found"
          with open(file_location,'r+') as fl:
              i=0
              for line in fl:
@@ -32,25 +34,24 @@ class Text_Converter_hindustan:
                  """sgst_amt_s=re.search(r'PACKING', line)"""
                  print("Po_s is "*5,po_s)
                  try:
-                    if po_s:
+                    if po_s and "not found" == po_no.lower():
                         word_list=line.split()
                         #print(word_list)
                         po_no=word_list[word_list.index("P.O.No.:")+1]
                         print("Po number is: "*5,po_no)
                  except:
-                    po_no="Not Found"
                     print("Po Number Not Found ")
 
                  try:
-                    if invoice_date_s:
+                    if invoice_date_s and "not found" == invoice_date.lower():
                         word_list = line.split()
                         invoice_date= word_list[word_list.index("Date:")+1].replace('/','.')
                         print("invoice date is: "*5,invoice_date)
                  except:
-                     invoice_date="Not found"
+
                      print("invoice date not found")
                  try:
-                    if part_qty_s:
+                    if part_qty_s :
                         word_list = line.split()
                         print(word_list)
                         part_qty = word_list[word_list.index("It") + 4]+".000"
