@@ -10,7 +10,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color:#4b4c9d">
-<h2 style="text-align:center;color:#ffffff;font-size:18px;font-weight:bold;margin-bottom:0px;margin-top:5px;">Please Check All Fields Are Correct</h2>
+<a href="/">
+    <img src="/static/img/home-2-xxl.png" alt="Vedarths Logo" style="margin-top:10px; margin-left:5px;width:40px;height:40px;"></a>
+<h2 style="text-align:center;color:#ffffff;font-size:18px;font-weight:bold;margin-bottom:0px;margin-top:-25px;">Please Check All Fields Are Correct</h2>
 <div class="container" style="margin-top:0px;">
 <form method="post" action="generateqr" >
 
@@ -153,7 +155,7 @@
 
          <button type="submit" class="btn btn-primary" style="background-color:#fbba00;color:black;margin-left:0px;" id="qrbtn" disabled="disabled">Generate QRCode</button>
      <a href="/media/result/{{ pdf_name }}">
-     <button type="button" style="background-color:#fbba00;color:black;"class="btn btn-primary">Download Invoice</button></a>
+     <button type="button" style="background-color:#fbba00;color:black;"class="btn btn-primary" >Download Invoice</button></a>
      <button type="button" style="background-color:#fbba00;color:black;"class="btn btn-primary">Download ASN File</button>
 
  </span>
@@ -182,7 +184,6 @@ input[type=text] {
     html {
   overflow-x: hidden;
 }
-
 .control-label.col-sm-3{
 margin-top:5px;
 text-align:right;
@@ -191,8 +192,6 @@ text-align:right;
 margin-botom:-5px;}
 </style>
 <script>
-
-
 function change_button(checkbx,button_id) {
     var btn1 = document.getElementById(button_id);
     //var btn2 = document.getElementById(btn_id);
