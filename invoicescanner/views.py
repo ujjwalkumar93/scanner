@@ -48,7 +48,7 @@ def upload(request):
             # print(content)
             file_location = os.path.join(os.getcwd(), 'media', 'text')
             text_file = open(file_location, 'w')
-            write_content = text_file.write(content)
+            write_content = text_file.write(str(content.encode('utf-8')))
             tabula_text_file_location = os.path.join(os.getcwd(), 'media', 'tabula_text')
             tabula_text_file = open(tabula_text_file_location, 'w+')
             df = read_pdf(file_path, pages="1")
