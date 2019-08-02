@@ -271,6 +271,19 @@ def qr_generator(request):
         minutesFile.close()
         resultPdfFile.close()
 
+
+    elif 'malik found (Excel sheet)' in open(file_location).read():
+        obj= Data_parser(file_path)
+        obj.convert_to_pdf()
+        obj.paste_qrcode_on_excel()
+        base_name = "malik_" if not base_name else base_name
+        now = datetime.now()
+        time = now.strftime("%H:%M:%S")
+        now_time = "".join(time)
+        res_file_name = base_name + now_time
+        resultPdfFile = open(base_name, 'wb')
+
+
     else:
         qr = pyqrcode.create(data)
         qr.svg("qrcode", scale=1.1)

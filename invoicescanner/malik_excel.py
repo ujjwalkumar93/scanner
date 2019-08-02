@@ -1,6 +1,8 @@
 import json
 import xlsxwriter
 from xlrd import open_workbook
+import os
+#from win32com import client
 class Data_parser:
     def __init__(self,excel_sheet_name_and_location):
         self.excel_sheet_name_and_location=excel_sheet_name_and_location
@@ -109,7 +111,24 @@ class Data_parser:
         print("Returned data is: "*10,data)
         return data
 
+    def convert_to_pdf(self):
+        print("This method is responsible for converting excel to pdf")
+
+
+
     def paste_qrcode_on_excel(self):
         print("this method is for pasting qrcode on excell sheet")
+        workbook = xlsxwriter.Workbook(self.excel_sheet_name_and_location)
+        worksheet = workbook.add_worksheet()
+
+        # Widen the first column to make the text clearer.
+        #worksheet.set_column('A:A', 30)
+
+        # Insert an image.
+        #worksheet.write('A2', 'Insert an image in a cell:')
+        qrcode_img=os.path.join(os.getcwd(), 'qrcode')
+        worksheet.insert_image('B56', qrcode_img)
+        print("QR code pasted on excell sheet \n file name is:",self.excel_sheet_name_and_location)
+
 
 
