@@ -18,7 +18,7 @@ class Text_Converter:
             for line in fl:
                 try:
                     po_s = re.search(r'Terms|Terms (\S+)', line, re.IGNORECASE)
-                    gst_s = re.search(r'MaharashtraDate (\S+)', line)
+                    gst_s = re.search(r'GSTIN (\S+)', line)
                     invoice_date_s = re.search(r'MaharashtraDate (\S+)', line)
                     vendor_code_s = re.search(r':Reg.Type (\S+)', line)
                     part_no_s = re.search(r':Reg.Type (\S+)', line)
