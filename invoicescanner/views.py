@@ -126,8 +126,6 @@ def fields(request):
 
 @csrf_exempt
 def qr_generator(request):
-    import pdb;
-    pdb.set_trace()
     po_no = request.POST.get('po', None)
     gst_no = request.POST.get('gst_no', None)
     item_no = request.POST.get('item_no', None)
@@ -300,7 +298,7 @@ def qr_generator(request):
             pdfWriter.addPage(pageObj)
 
         base_name = "bhagwati_invoice_" if not base_name else base_name
-        now = datetime.now() 
+        now = datetime.now()
         time = now.strftime("%H_%M_%S")
         now_time = "".join(time)
         res_file_name = base_name + now_time
@@ -313,8 +311,11 @@ def qr_generator(request):
         resultPdfFile.close()
 
     csv_file_name = os.path.join(os.getcwd(), 'media', 'result', (res_file_name + '.csv'))
-    csv_row = [po_no, item_no, part_qty, inv_no, inv_date, gross_rate, net_rate, '', '', sgst_value, cgst_value,
-               igst_value, sgst_rate, cgst_rate, igst_rate, '0', '0', '0', invoice_value, 'INR', '', '', '', gst_no, '', '',
+    basic_taxable_cost = format(float(part_qty) * float(net_rate), '.2f').replace(",", "")
+    csv_row = [po_no, item_no, part_qty, inv_no, inv_date, gross_rate, net_rate, basic_taxable_cost, basic_taxable_cost,
+               sgst_value, cgst_value,
+               igst_value, sgst_rate, cgst_rate, igst_rate, '0', '0', '0', invoice_value, 'INR', '', '', '', gst_no, '',
+               '',
                '', '', '27AAACT2727Q1ZW']
     ARNGenerator.generate_arn_file(csv_file_name, csv_row)
     template = loader.get_template("fields.html")
