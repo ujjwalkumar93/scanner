@@ -1,7 +1,6 @@
 import os
 import re
 
-
 class Company_name:
     @staticmethod
     def name():

@@ -36,7 +36,7 @@ class Text_Converter_nel:
                         po_no_s = word_list[word_list.index("PURCHASE") + 4]
                         po_len = len(po_no_s) - 4
                         po_no = po_no_s[0:po_len]
-                        print("Po number is: " * 3, po_no)
+                        print("Po number is: ", po_no)
 
                 except:
                     po_no = "Not found"
@@ -115,12 +115,12 @@ class Text_Converter_nel:
 
                 try:
                     if invoice_num_s:
-                        print("yes")
+                        # print("yes")
                         word_list = line.split()
                         invoice_num_with_len = word_list[word_list.index("DATE:") - 1]
                         length_invoice = len(invoice_num_with_len) - 7
                         invoice_num = invoice_num_with_len[0:length_invoice]
-                        print("Invoice number: " * 23, invoice_num)
+                        print("Invoice number: ", invoice_num)
 
                 except:
                     invoice_num = "Not found"
@@ -178,7 +178,7 @@ class Text_Converter_nel:
                             sgst_rate = "0.00"
                             sgst_amt = "0.00"
                         else:
-                            print("came in outer block" * 5)
+                            # print("came in outer block" * 5)
                             cgst_rate = cgst_rate
                             cgst_amt = cgst_amt
                             sgst_rate = sgst_rate

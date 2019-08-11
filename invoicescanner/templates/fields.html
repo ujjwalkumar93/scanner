@@ -37,6 +37,15 @@
         <input type="text" class="form-control ip" name="part_qty" value="{{ part_qty }}">
       </div>
     </div>
+
+    <div class="form-group">
+
+      <label class="control-label col-sm-3" s>GSTIN: </label>
+      <div class="col-sm-3">
+
+        <input type="text" class="form-control ip"  id="gst_no" name="gst_no" value= "{{ gst_no }}" >
+      </div>
+    </div>
        <div class="form-group">
       <label class="control-label col-sm-3" >Vendor GST Invoices No :</label>
       <div class="col-sm-3">
@@ -156,7 +165,8 @@
          <button type="submit" class="btn btn-primary" style="background-color:#fbba00;color:black;margin-left:0px;" id="qrbtn" disabled="disabled">Generate QRCode</button>
      <a href="/media/result/{{ pdf_name }}">
      <button type="button" style="background-color:#fbba00;color:black;"class="btn btn-primary" >Download Invoice</button></a>
-     <button type="button" style="background-color:#fbba00;color:black;"class="btn btn-primary">Download ASN File</button>
+     <a href="/media/result/{{ pdf_name }}.csv">
+         <button type="button" style="background-color:#fbba00;color:black;"class="btn btn-primary">Download ASN File</button></a>
 
  </span>
       </div>
