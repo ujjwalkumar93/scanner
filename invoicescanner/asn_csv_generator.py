@@ -7,31 +7,14 @@ csv_headers = ['PoNumber', 'PO Item No', 'Quantity', 'Vendor Challan No', 'Chall
                'COP Certificate', 'Certificate Date', 'TML GSTIN']
 
 
-class ARNGenerator:
+class ASNGenerator:
     @staticmethod
-    def generate_arn_file(file_path, csv_row):
-        print ()
-        print ()
-        print (csv_row)
-        print ()
-        print ()
-        print (csv_headers)
-        print ()
-        print ()
+    def generate_asn_file(file_path, csv_row):
         csv_data = []
         csv_data.append(csv_headers)
         csv_data.append(csv_row)
-
-        print (file_path)
-        print ()
-        print (csv_data)
-        print ()
-        print ()
 
         with open(file_path, 'w') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerows(csv_data)
         csv_file.close()
-
-
-# ARNGenerator.generate_arn_file('temp.csv', ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','1','2','3','4','5','6','7','8','9','10','11','12'])

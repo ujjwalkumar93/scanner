@@ -11,7 +11,7 @@ from reportlab.graphics import renderPDF
 from svglib.svglib import svg2rlg
 from tabula import *
 
-from invoicescanner.arn_csv_generator import ARNGenerator
+from invoicescanner.asn_csv_generator import ASNGenerator
 from invoicescanner.hindustan_brush import *
 from invoicescanner.nelson_pdf_to_text import *
 from invoicescanner.pdf_to_text import *
@@ -270,7 +270,7 @@ def qr_generator(request):
                igst_value, sgst_rate, cgst_rate, igst_rate, '0', '0', '0', invoice_value, 'INR', '', '', '', gst_no, '',
                '',
                '', '', '27AAACT2727Q1ZW']
-    ARNGenerator.generate_arn_file(csv_file_name, csv_row)
+    ASNGenerator.generate_asn_file(csv_file_name, csv_row)
     template = loader.get_template("fields.html")
     link = 'http://{}/{}'.format(request.get_host(), base_name)
     data = {
