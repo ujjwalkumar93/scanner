@@ -76,11 +76,7 @@ def fields(request):
         data = obj.fields_data_hindustan()
         print("Hindustan Found " * 3)
 
-    elif 'AssociatesDealer' in open(file_location).read():
-        print("Perfect Packing Found " * 3)
-        obj = Text_Converter_perfect_packing(file_path)
-        data = obj.fields_data_perfect_packing()
-        print("Perfect Packing Found " * 3)
+
 
     else:
         obj = Text_Converter(file_path)
@@ -224,43 +220,6 @@ def qr_generator(request):
             pdfWriter.addPage(pageObj)
 
         base_name = "Hindustan" if not base_name else base_name
-        now = datetime.now()
-        time = now.strftime("%H_%M_%S")
-        now_time = "".join(time)
-        res_file_name = base_name + now_time
-        base_name = os.path.join(os.getcwd(), 'media', 'result', res_file_name)
-        resultPdfFile = open(base_name, 'wb')
-        pdfWriter.write(resultPdfFile)
-        watermarkFile.close()
-        minutesFile.close()
-        resultPdfFile.close()
-
-
-    elif 'sales@perfectpacking.in' in open(file_location).read():
-        qr = pyqrcode.create(data)
-        qr.svg("qrcode", scale=1.1)
-        # writing code to get location on QRCode
-        qrcode_path = os.path.join(os.getcwd(), 'qrcode')
-        drawing = svg2rlg(qrcode_path)
-        scaleFactor = 1
-        drawing.width *= scaleFactor
-        drawing.height *= scaleFactor
-        drawing.scale(scaleFactor, scaleFactor)
-        drawing.shift(25, -420)
-        # creating qrcode on blank pdf so later we can merge as watermark on origional pdf
-        renderPDF.drawToFile(drawing, "qrpdf.pdf", autoSize=0)
-        blank_pdf_qr = os.path.join(os.getcwd(), 'qrpdf.pdf')
-        watermarkFile = open(blank_pdf_qr, 'rb')
-        pdfWatermarkReader = PyPDF2.PdfFileReader(watermarkFile)
-        minutesFile = open(file_path, 'rb')
-        pdfReader = PyPDF2.PdfFileReader(minutesFile)
-        pdfWriter = PyPDF2.PdfFileWriter()
-        for pageNum in range(pdfReader.numPages):
-            pageObj = pdfReader.getPage(pageNum)
-            pageObj.mergePage(pdfWatermarkReader.getPage(0))
-            pdfWriter.addPage(pageObj)
-
-        base_name = "perfect" if not base_name else base_name
         now = datetime.now()
         time = now.strftime("%H_%M_%S")
         now_time = "".join(time)
