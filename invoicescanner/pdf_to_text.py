@@ -255,7 +255,7 @@ class Text_Converter:
                     if po_order_item_no_s:
                         word_list=line.split()
                         po_order_item_no=total_price= word_list[word_list.index("NO:") +1]
-                        print("po order item no "*20,po_order_item_no)
+                        print("po order item no - ", po_order_item_no)
                 except:
                     print("Po order not found"*20)
                     po_order_item_no="NA"""
@@ -275,7 +275,7 @@ class Text_Converter:
                                 # print("wordlist is "*5,word_list)
                                 po_order_item_no = word_list[word_list.index("NO:") + 1]
 
-                                print("Po order item no is ", po_order_item_no)
+                                print("Po order item no is - ", po_order_item_no)
 
                         except:
                             po_order_item_no = "NA"
@@ -283,14 +283,14 @@ class Text_Converter:
                         try:
                             if igst_tax_s:
                                 word_list = line.split()
-                                print("Word list is: ", word_list)
+                                # print("Word list is: ", word_list)
                                 igst_rate = word_list[word_list.index("I-Gst") + 1].replace("%", ".00")
                                 igst_amt = word_list[word_list.index("I-Gst") + 6].replace(",", "")
                                 cgst_rate = "0.00"
                                 sgst_rate = "0.00"
                                 cgst_amt = "0.00"
                                 sgst_amt = "0.00"
-                                print("Igst is: " * 5, igst_amt)
+                                print("Igst is - ", igst_amt)
                         except:
                             igst_rate = "NA"
                             igst_amt = "NA"
@@ -298,7 +298,7 @@ class Text_Converter:
                         try:
                             if sgst_tax_s:
                                 word_list = line.split()
-                                print("wordlist " * 5, word_list)
+                                # print("wordlist " * 5, word_list)
                                 sgst_rate = word_list[word_list.index("S-Gst") + 1].replace("%", ".00")
                                 sgst_amt = word_list[word_list.index("S-Gst") + 6].replace(",", "")
                                 igst_amt = "0.00"
@@ -364,5 +364,5 @@ class Text_Converter:
 
                 }
             data = json.dumps(json_obj)
-            print("data is: ", data)
+            # print("data is: ", data)
             return data

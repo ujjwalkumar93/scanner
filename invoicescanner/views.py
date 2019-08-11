@@ -36,7 +36,7 @@ def upload(request):
             file_location = os.path.join(os.getcwd(), 'media', 'text')
             text_file = open(file_location, 'w')
             text_file.write("Excel file")
-            print("Excell sheet found " * 10, name)
+            print("Excell sheet found - ", name)
         else:
             print("PDF found " * 10, name)
             file_path = os.path.join(os.getcwd(), 'media', name)
@@ -110,12 +110,6 @@ def fields(request):
         'cess': '0.00'
 
     }
-
-    print()
-    print()
-    print(rendata)
-    print()
-    print()
 
     return HttpResponse(template.render(rendata))
 
